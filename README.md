@@ -22,7 +22,7 @@ stockAI is an integrated machine learning package for technical research of stoc
 <br>
 <br>
 
-## How to stockAI? 
+## How to use stockAI? 
 ------
 You can find more information about using stockAI in the `tutorials` folder.
 
