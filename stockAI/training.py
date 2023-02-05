@@ -30,7 +30,7 @@ def save_dataset(lst_trader, train_data, test_data, scaled_train_data=None, scal
         print(f"== trainX: {trader.trainX.shape},  testX: {trader.testX.shape} 생성 ==")
         
         
-        if scaled_train_data != None: 
+        if type(scaled_train_data) != 'NoneType': 
             
             trader.trainX_scaled = scaled_train_data.drop(columns=["Code", "Date", "next_change"]).reset_index(drop=True)
             trader.testX_scaled = scaled_test_data.drop(columns=["Code", "Date", "next_change"]).reset_index(drop=True)
@@ -57,13 +57,13 @@ def trader_train(lst_trader):
         b2 = trader.buyer.sub_buyers[1]
         
         
-        if trader.trainX_scaled != None:
+        if type(trader.trainX_scaled) != "NoneType":
             if b2.data_transform != None:          
                 trainX = b2.data_transform(trader.trainX_scaled.loc[b1.decision(trader.trainX)].values.tolist())
             else:     
                 trainX = trader.trainX_scaled.loc[b1.decision(trader.trainX)]
         else:  
-            if type(b2.data_transform) != 'NoneType':          
+            if b2.data_transform != None:           
                 trainX = b2.data_transform(trader.trainX.loc[b1.decision(trader.trainX)].values.tolist())
             else:     
                 trainX = trader.trainX.loc[b1.decision(trader.trainX)]
@@ -176,9 +176,9 @@ def set_threshold(lst_trader, lst_threshold:list, histogram:bool=True):
         fig = plt.figure(figsize=(16,10))
         
         for buyer in trader.buyer.sub_buyers:
-            if type(buyer) == sai.conditional_buyer:
+            if type(buyer) == conditional_buyer:
                 b1 = buyer
-            elif type(buyer) == sai.machinelearning_buyer: 
+            elif type(buyer) == machinelearning_buyer: 
                 b2 = buyer
         
         b2.threshold = threshold 
