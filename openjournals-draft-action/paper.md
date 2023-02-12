@@ -46,7 +46,7 @@ simulation 함수는 작성된 매매일지를 토대로 수익률을 계산한�
 ![img](./image/FIGURE6.png)
 ![img](./image/FIGURE7.png)
 
-[Figure 6, 7] 트레이더 별 총 수익률(좌측)과 거래일 별 수익률 그래프(우측)
+[Figure 6, 7] 트레이더 별 총 수익률(좌측)과 거래일 별 수익률 그래프(우측) [@ref.bib]
 
 
 ## 참고문헌
