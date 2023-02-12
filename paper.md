@@ -67,11 +67,13 @@ sai는 주식 데이터 제공을 위해 해외 주가 데이터는 yfinance의 
 [Figure 2] 그래프를 보고 결정한 threshold는 트레이더 순서대로 리스트에 담아 set_threshold 함수의 lst_threshold 인자에 입력하면, threshold 기준으로 다음날 종가 변화율의 histogram plot으로 수익성을 미리 검증해볼 수 있다. 입력한 threshold는 트레이더 별 machinelearning_buyer 객체 안에 자동 저장된다. 
 
 ![img](./image/FIGURE3.png)
+
 [Figure 3] threshold 기준으로 다음날 종가 변화율을 비교하는 그래프
 
 decision 함수는 threshold 기준으로 매수, 매도가 자동 결정하여 모든 trader의 매매일지 작성이 완료되면, 하나의 DataFrame으로 반환한다. 매매일지 DataFrame은 매수(+)/매도(-) 상태와 매수/매도 할 비율, Close 정보로 구성된다.
 
 ![img](./image/FIGURE4.png)
+
 ![img](./image/FIGURE5.png)
 
 [Figure 4, 5] 매매일지 데이터프레임(좌측)과 수익률 데이터프레임(우측)
@@ -79,6 +81,7 @@ decision 함수는 threshold 기준으로 매수, 매도가 자동 결정하여 
 simulation 함수는 작성된 매매일지를 토대로 수익률을 계산한다. leaderboard 함수는 트레이더 별로 총 수익률을 알 수 있고, yield_plot 함수는 거래일 별 수익률 그래프 시각화를 지원하여 모델의 성능을 한눈에 볼 수 있다는 이점이 있다. 이처럼 과거 데이터를 활용해 자신의 알고리즘 및 투자전략을 검증하는 백테스팅 과정을 포함한다. 
 
 ![img](./image/FIGURE6.png)
+
 ![img](./image/FIGURE7.png)
 
 [Figure 6, 7] 트레이더 별 총 수익률(좌측)과 거래일 별 수익률 그래프(우측)
