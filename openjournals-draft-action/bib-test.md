@@ -1,7 +1,12 @@
 ---
 bibliography: ref.bib
-nocite: "@*"
+bibliography: bibliography.bib
+output: html_document
 ---
+# nocite: "@*"
 
-# References
+# BibTeX references
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Praesent enim urna, dapibus et bibendum vel, consectetur et turpis.
+Cras a molestie nulla. [@ref1_stock]
