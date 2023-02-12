@@ -1,5 +1,5 @@
 ---
-bibliography: sample.bib
+bibliography: [ref.bib]
 nocite: "@*"
 ---
 
