@@ -1,3 +1,7 @@
+---
+bibliography: ref.bib
+nocite: "@*"
+---
 # StockAI:Python Machine Learning Framework for stock predcition 
 
 ## 1. Summary
