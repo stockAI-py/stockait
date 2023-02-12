@@ -51,7 +51,7 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ## Implementation and use in research 연구에서의 구현 및 사용  => usage 
 
 sai는 주식 데이터 제공을 위해 해외 주가 데이터는 yfinance의 download를 사용하고, 국내(Korea) 주가 데이터는 krx 웹사이트의 공개된 주가 데이터를 크롤링하여 2001년 1월 1일부터 2022년 12월 31일까지 Open, High, Low, Close, Volume 데이터를 얻었다. read_data method에 원하는 Market 리스트를 입력 시, 종목(Code)과 Date별 Open, High, Low, Close, Volume 으로 구성된 통합 주가 데이터셋이 제공된다.
-주가 예측 시 가장 큰 장애 요인은 거시 환경 및 시장의 변동성이라 할 수 있다. 이론적으로 주가의 무작위성은 딥러닝 알고리즘으로 어느 정도 해소가 가능하지만, 주가를 둘러싼 거시 환경과 시장의 급변과 같은 외부 충격은 주가 예측을 어렵게 만드는 요인이다.[1] 이를 해소하기 위한 투자 방법에는 과거의 주가 흐름이 미래에도 반복된다는 전제를 바탕으로 가격 및 거래량의 시계열 데이터를 특정한 수학적 공식을 이용해 생성한 지표들로 분석하여 추세를 파악하는 기술적 분석이 있다.[2] add_index method는 통합 주가 데이터셋의 Open, High, Low, Close, Volume 으로부터 보조지표 칼럼을 쉽게 추가할 수 있다. 또한 종목마다 상이한 스케일을 맞춰주기 위한 scaling method에는 MinMax, Standard, Robust와 가격 관련 변수들을 전날의 종가로 나누어 표준화하는 DivClose가 있다. time_series method는 일 단위 데이터를 당일(D_0) 대비 (D_-(N-1))까지 N일로 데이터를 재구성하여 시계열 데이터셋으로 변환한다.
+주가 예측 시 가장 큰 장애 요인은 거시 환경 및 시장의 변동성이라 할 수 있다. 이론적으로 주가의 무작위성은 딥러닝 알고리즘으로 어느 정도 해소가 가능하지만, 주가를 둘러싼 거시 환경과 시장의 급변과 같은 외부 충격은 주가 예측을 어렵게 만드는 요인이다.[@ref1_stock] 이를 해소하기 위한 투자 방법에는 과거의 주가 흐름이 미래에도 반복된다는 전제를 바탕으로 가격 및 거래량의 시계열 데이터를 특정한 수학적 공식을 이용해 생성한 지표들로 분석하여 추세를 파악하는 기술적 분석이 있다.[@ref2_backtesting] add_index method는 통합 주가 데이터셋의 Open, High, Low, Close, Volume 으로부터 보조지표 칼럼을 쉽게 추가할 수 있다. 또한 종목마다 상이한 스케일을 맞춰주기 위한 scaling method에는 MinMax, Standard, Robust와 가격 관련 변수들을 전날의 종가로 나누어 표준화하는 DivClose가 있다. time_series method는 일 단위 데이터를 당일(D_0) 대비 (D_-(N-1))까지 N일로 데이터를 재구성하여 시계열 데이터셋으로 변환한다.
 
 ![img](./image/FIGURE1.png)
 
@@ -88,3 +88,5 @@ simulation 함수는 작성된 매매일지를 토대로 수익률을 계산한�
 [1] 한태동. LSTM 을 이용한 주가 예측: 기술 지표, 거시 경제 지표, 시장 심리의 조합을 중심으로. 융복합지식학회논문지, 2021, 9.4: 189-198. https://journal.scvk.or.kr/articles/pdf/GRoJ/scvk-2021-009-04-0.pdf
 
 [2] 최진영; 김민구. 기술적 지표 기반의 주가 움직임 예측을 위한 모델 분석. 한국정보처리학회 학술대회논문집, 2019, 26.2: 885-888. https://koreascience.kr/article/CFKO201924664108348.pdf
+
+# References
