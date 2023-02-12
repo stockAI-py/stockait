@@ -1,9 +1,7 @@
 ---
 bibliography: ref.bib
-bibliography: bibliography.bib
-output: html_document
+nocite: "@*"
 ---
-# nocite: "@*"
 
 # BibTeX references
 
