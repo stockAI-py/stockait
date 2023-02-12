@@ -33,7 +33,7 @@ aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
 aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ---
 
-# StockAI:Python Machine Learning Framework for stock predcition 
+# StockAI:Python Machine Learning Framework for stock predcition. 
 
 ## 1. Summary
 
