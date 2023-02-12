@@ -1,5 +1,5 @@
 ---
-title: 'Gala: A Python package for galactic dynamics'
+title: 'StockAI:Python Machine Learning Framework for stock predcition.'
 tags:
   - Python
   - astronomy
