@@ -47,6 +47,17 @@ simulation 함수는 작성된 매매일지를 토대로 수익률을 계산한�
 
 
 ## 참고문헌
+\documentclass{article}
+\usepackage{kotex}
+
+\begin{document}
+
+여기다가 본문 내용을 쓰시면 됩니다. 인용은 cite를 이용하시면 됩니다. \cite{ref1_stock}
+
+\bibliographystyle{unsrt}
+\bibliography{ref}
+
+\end{document}
 
 [1] 한태동. LSTM 을 이용한 주가 예측: 기술 지표, 거시 경제 지표, 시장 심리의 조합을 중심으로. 융복합지식학회논문지, 2021, 9.4: 189-198. https://journal.scvk.or.kr/articles/pdf/GRoJ/scvk-2021-009-04-0.pdf
 
