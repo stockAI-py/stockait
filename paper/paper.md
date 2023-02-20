@@ -2,29 +2,32 @@
 title: 'StockAI:Python Machine Learning Framework for stock predcition.'
 tags:
   - Python
-  - astronomy
-  - dynamics
-  - galactic dynamics
-  - milky way
+  - jupyter notebook
+  - stock
+  - machine learning 
+  - stockAI 
 authors:
-  - name: Adrian M. Price-Whelan
-    orcid: 0000-0000-0000-0000
+  - name: Eunsu Kim
+    orcid: 0000-0002-6614-7465
     equal-contrib: true
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: Author Without ORCID
-    equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
-    affiliation: 2
-  - name: Author with no affiliation
-    corresponding: true # (This is how to denote the corresponding author)
-    affiliation: 3
+    affiliation: 1
+  - name: Eunji Cha
+    equal-contrib: true 
+    affiliation: 1
+  - name: Sieun Kim
+    equal-contrib: true
+    affiliation: 1
+  - name: Yujin Cha
+    equal-contrib: true
+    affiliation: 1
+  - name: Hongryul Ahn
+    corresponding: true 
+    affiliation: 1
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
+ - name: Suwon University, Republic of Korea
    index: 1
- - name: Institution Name, Country
-   index: 2
- - name: Independent Researcher, Country
-   index: 3
-date: 13 August 2017
+
+date: 20 February 2023
 bibliography: paper.bib
 
 # Optional fields if submitting to a AAS journal too, see this blog post:
@@ -33,7 +36,6 @@ aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
 aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ---
 
-# StockAI:Python Machine Learning Framework for stock predcition. 
 
 ## 1. Summary
 
@@ -43,54 +45,48 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 <br>
 
 
-## State of need 필요성
+## State of need 
 
   'StockAI' is a Python library which is better than the existing library used to make models predicting stocks. First of all, existing libraries are inconvenient to use because their functions are distributed to different libraries. For example, we have used 'fdreader', 'yfinance' [@yj1] for data loading, 'pandas' for data preprocessing, and 'sklearn' [@yj2]', 'keras' and 'pytorch' for modeling. By modularizing the functions of data collection, preprocessing, and modeling, 'StockAI' can easily conduct stock price prediction research even for those who are not good at programming. In addition, there were no libraries required to validate the performance of the model before. Validation is an essential process for ensuring the reliability of the model. The 'StockAI' model validation function makes it easy to draw back-testing results and yield graphs. This allows you to evaluate the performance of learned models using future data and view the results at a glance. Finally, stock price data requires a lot of time and money for enough open source or quality data.[@yj3] From Github, Users of 'StockAI' can download 10 years worth of stock price data collected from 'KRX' and 'Yahoo Finance'.
 
 
 
-## Implementation and use in research 연구에서의 구현 및 사용  => usage 
+## Implementation and use in research 
 
   sai uses yfinance's Download for overseas stock data to provide stock data, and domestic (Korea) stock data crawls the public stock data on the KRX website, and from January 1, 2001 to December 31, 2022. Open, High, Low, Close, Volume data are obtained. When inputting the desired Market list in read_data method, an integrated stock price dataset consisting of codes and dates open, High, Low, Close, and Volume is provided.
 Predicting stock prices is a challenging task as it depends on various factors including but not limited to political conditions, global economy, company’s financial reports and performance etc.[@ej1] To address this, numerous studies have been conducted on the stock-market prediction using technical or fundamental analysis through various soft-computing techniques and algorithms.[@ej2] add_index method can easily add technical aid columns from Open, High, Low, Close, and Volume of the Integrated Dataset. In addition, the scaling method for different scales for each item has a divclose that divides minmax, standard, robust and price -related variables into the closing price of the previous day. time_series method reconstructs the data into N-day by the day (DN-1) compared to the day (D0) and converts it into a time series dataset.
 
 
-![img](../image/FIGURE1.png)
+![Time series stock price integrated dataset](../image/FIGURE1.png)
 
-[Figure 1] Time series stock price integrated dataset
 
   Before using the Trader class, the user must split the Train/Test dataset and declare the model to be used by the buyer. The Trader class can learn and predict a model and write a trading journal that uses the predicted outcome values to determine a sale based on a specific threshold.
 After model learning, the performance of the model is verified through the get_eval_by_threshold function, which supports graph [Figure 2] visualization for four evaluation indicators: auc_score and precision, recall, and f1score. The optimal prediction probability threshold of machine learning_buyer may be set for stock trading. Suwon Lab XGBoost, Gyeonggi Lab Logistic Regression, and Pororo LightGBM (provided in the official document) were models learned from January 1, 2017 to December 31, 2020, and the test dataset was used from January 1, 2021 to December 31, 2021. 
 
 
-![img](../image/FIGURE2.png)
+![Evaluation Indexes Graph for Model Performance Evaluation and Threshold Settings](../image/FIGURE2.png)
 
-[Figure 2] Evaluation Indexes Graph for Model Performance Evaluation and Threshold Settings 
+
 
 [Figure 2] If you look at the graph and put the thresholds determined in the order of traders and enter them in the lst_threshold factor of the set_threshold method, profitability can be checked in advance with the histogram graph of the closing price change rate the next day (based on threshold). The entered thresholds are automatically stored in the machinelearning_buyer object for each trader.
 
 
-![img](../image/FIGURE3.png)
-
-[Figure 3] Graph comparing the rate of change in the closing price of the next day based on threshold
+![Graph comparing the rate of change in the closing price of the next day based on threshold](../image/FIGURE3.png)
 
 
   The decision function returns one DataFrame, when the buying and selling prices are automatically determined based on the threshold and all traders have completed the trading journal writing. Trading journal data frame consists of buying (+)/selling (-) status, buying/selling ratio, and close information.
 
 
-![img](../image/FIGURE4.png)
+![Trading journal data frame](../image/FIGURE4.png)
 
-![img](../image/FIGURE5.png)
+![Yield data frame](../image/FIGURE5.png)
 
-[Figure 4, 5] Trading journal data frame (left) and Yield data frame (right)
 
   The simulation function calculates the return based on the trading journal. The leaderboard function has a total return for each trader, and the yield_plot function supports the return graph visualization for each trading day, so that the model's performance can be seen at a glance. As such, it includes a back-testing process that uses past data to verify its algorithm and investment strategy.
 
-![img](../image/FIGURE6.png)
+![Total returns for each trader](../image/FIGURE6.png)
 
-![img](../image/FIGURE7.png)
-
-[Figure 6, 7] Total returns for each trader (left) and yield graph for each trading day (right)
+![yield graph for each trading day](../image/FIGURE7.png)
 
 
 ## References
