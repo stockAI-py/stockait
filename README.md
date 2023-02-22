@@ -28,7 +28,7 @@ You can find more information about using stockAI in the `tutorials` folder.
 
 And The following image summarizes the methods of stockAI.  
 
-![img](./image/method_summary.png)
+![img](./image/stockAI img.png)
 
 
 
