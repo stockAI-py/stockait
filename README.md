@@ -27,7 +27,7 @@ stockAI is an integrated machine learning package for technical research of stoc
 You can find more information about using stockAI in the `tutorials` folder.
 
 And The following image summarizes the methods of stockAI.  
-stockAI img1.png
+
 ![img](./image/stockAI img1.png)
 
 
