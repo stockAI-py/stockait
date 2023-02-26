@@ -71,7 +71,7 @@ sai.time_series(data:pd.DataFrame(), day:Int=10)
 
 ### 3. Trader Definition
 **3.1 trader definitions**
-![img](./image/trader_definition_summary.png)
+![img](./image/stockAI_img2.png)
 For trader definitions, it is recommended to refer to the `tutorials` folder. 
 
 <br>
