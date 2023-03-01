@@ -44,7 +44,7 @@ def decision(lst_trader:list, dtype='test', data=None, data_scaled=None):
         # df_signal_all: trader_id, date, code, +(buy)/-(sell), amount, close
         df_signal_all = df_signal_all.append(df_signal)
         
-        print(f'== {trader.name} complete ==')
+        print(f'== {trader.name} completed ==')
     
     return df_signal_all 
         
@@ -114,7 +114,7 @@ def simulation(df_signal_all, init_budget, init_stock, fee=0.01):
                 budget -= close * stock[code] * (1.0+fee)
             
         df_history_all = df_history_all.append(pd.DataFrame(lst_history, columns=['Trader_id', 'Sell_date', 'Budget', 'Yield', 'Stock']))
-        print(f"== {trader_id} complete ==")
+        print(f"== {trader_id} completed ==")
 
     return df_history_all
 
