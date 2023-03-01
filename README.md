@@ -1,12 +1,12 @@
-## stockAI: python machine learning framework for stock prediction
 ------
+## stockAI: python machine learning framework for stock prediction
 stockAI is an integrated machine learning package for technical research of stock price big data. From data collection to machine learning-specific stock price time series dataset generation, AI model learning and model evaluation, and backtesting, the goal of this package is to provide a one-time Python library to enhance the utilization and convenience of stock price big data technical research.
 
 <br>
 <br>
 
-## Why stockAI? 
 ------
+## Why stockAI? 
 - **Stock Price Big Data Collection** 
 
  'stockAI' stores big data in github and provides it to users. Because 'stockAI' is a research package, the data provided here focused on collecting data, storing it reliably, and storing it in a high-quality way, rather than collecting it in real time with unstable crawling methods.
@@ -22,8 +22,8 @@ stockAI is an integrated machine learning package for technical research of stoc
 <br>
 <br>
 
-## How to use stockAI? 
 ------
+## How to use stockAI? 
 You can find more information about using stockAI in the `tutorials` folder.
 
 
