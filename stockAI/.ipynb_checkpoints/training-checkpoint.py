@@ -12,22 +12,23 @@ import matplotlib
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+from .trader import *
 
 
-# 필요 데이터셋 생성
+
 def save_dataset(lst_trader, train_data, test_data, scaled_train_data=None, scaled_test_data=None):
     for trader in lst_trader:
         print(f'== {trader.name} ==')
         
         trader.train_code_date = train_data[['Code', 'Date']].values
         trader.test_code_date = test_data[['Code', 'Date']].values
-        print(f"== train_code_date: {trader.train_code_date.shape},  test_code_date: {trader.test_code_date.shape} 생성 ==")
+        print(f"== train_code_date: {trader.train_code_date.shape},  test_code_date: {trader.test_code_date.shape} ==")
                 
 
         trader.trainX = train_data.drop(columns=["Code", "Date", "next_change"]).reset_index(drop=True)
         trader.testX = test_data.drop(columns=["Code", "Date", "next_change"]).reset_index(drop=True)
 
-        print(f"== trainX: {trader.trainX.shape},  testX: {trader.testX.shape} 생성 ==")
+        print(f"== trainX: {trader.trainX.shape},  testX: {trader.testX.shape} ==")
         
         
         if type(scaled_train_data) != 'NoneType': 
@@ -35,22 +36,23 @@ def save_dataset(lst_trader, train_data, test_data, scaled_train_data=None, scal
             trader.trainX_scaled = scaled_train_data.drop(columns=["Code", "Date", "next_change"]).reset_index(drop=True)
             trader.testX_scaled = scaled_test_data.drop(columns=["Code", "Date", "next_change"]).reset_index(drop=True)
             
-            print(f"== trainX_scaled: {trader.trainX_scaled.shape},  testX_scaled: {trader.testX_scaled.shape} 생성 ==")
+            print(f"== trainX_scaled: {trader.trainX_scaled.shape},  testX_scaled: {trader.testX_scaled.shape} ==")
 
             
         trader.trainY = train_data['next_change'].reset_index(drop=True)
         trader.testY = test_data['next_change'].reset_index(drop=True)
-        print(f"== trainY: {trader.trainY.shape},  testY: {trader.testY.shape} 생성 ==")
+        print(f"== trainY: {trader.trainY.shape},  testY: {trader.testY.shape} ==")
         
         if 'class' in trader.label:
             threshold = float(trader.label.split('&')[1])
             trader.train_classification = (trader.trainY >= threshold).astype('int')
             trader.test_classification = (trader.testY >= threshold).astype('int')
-            print(f"== trainY_classification: {trader.train_classification.shape},  testY_classification: {trader.test_classification.shape} 생성 ==")
+            print(f"== trainY_classification: {trader.train_classification.shape},  testY_classification: {trader.test_classification.shape} ==")
             
         print()
+
         
-# 모델 학습
+        
 def trader_train(lst_trader):
     for trader in lst_trader:
         b1 = trader.buyer.sub_buyers[0]
@@ -77,9 +79,10 @@ def trader_train(lst_trader):
     
         trader.buyer.train(trainX, trainY)
             
-        print(f"== {trader.name} 모델학습 완료 ==")
+        print(f"== {trader.name} Model Fitting Completed ==")
         
-# 모델 평가 및 threshold 설정
+
+        
 def get_eval_by_threshold(lst_trader):
 
     from sklearn.preprocessing import Binarizer
@@ -134,9 +137,9 @@ def get_eval_by_threshold(lst_trader):
             binarizer = Binarizer(threshold = i).fit(pred_proba)
             pred = binarizer.transform(pred_proba)
             
-            ax2.scatter(i, precision_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#daa933', label='정밀도') # 정밀도
-            ax2.scatter(i, recall_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#37babc', label ='재현율') # 재현율 
-            ax2.scatter(i, f1_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#b4d125', label='f1 score') # f1 score
+            ax2.scatter(i, precision_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#daa933', label='Precision') 
+            ax2.scatter(i, recall_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#37babc', label ='Recall')  
+            ax2.scatter(i, f1_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#b4d125', label='f1 score') 
             if i == 0.1:
                 ax2.legend(fontsize = 10)
 
@@ -152,7 +155,7 @@ def get_eval_by_threshold(lst_trader):
             
             
             
-# 수익성 검증 histogram
+
 def set_threshold(lst_trader, lst_threshold:list, histogram:bool=True):
     from sklearn.preprocessing import Binarizer
     import matplotlib.pyplot as plt
@@ -176,9 +179,9 @@ def set_threshold(lst_trader, lst_threshold:list, histogram:bool=True):
         fig = plt.figure(figsize=(16,10))
         
         for buyer in trader.buyer.sub_buyers:
-            if type(buyer) == conditional_buyer:
+            if type(buyer) == ConditionalBuyer:
                 b1 = buyer
-            elif type(buyer) == machinelearning_buyer: 
+            elif type(buyer) == MachinelearningBuyer: 
                 b2 = buyer
         
         b2.threshold = threshold 
@@ -207,13 +210,12 @@ def set_threshold(lst_trader, lst_threshold:list, histogram:bool=True):
                     lower_threshold.append(next_change)
 
             fig = plt.figure(figsize=(16,10))
-            sns.distplot(upper_threshold, color= 'r', label='{}% 이상 예측한 값들의 다음날 종가 변화율 분포 | 평균: {}'.format(trader.buyer.sub_buyers[1].threshold * 100, round(np.mean(upper_threshold), 3)))
-            sns.distplot(lower_threshold, label='{}% 미만 예측한 값들의 다음날 종가 변화율 분포 | 평균: {}'.format(trader.buyer.sub_buyers[1].threshold * 100, round(np.mean(lower_threshold), 3)))
+            sns.distplot(upper_threshold, color= 'r', label="Distribution of the next_change of values predicted by more than {}% | Mean: {}".format(trader.buyer.sub_buyers[1].threshold * 100, round(np.mean(upper_threshold), 3)))
+            sns.distplot(lower_threshold, label='Distribution of the next_change of values predicted by less than {}% | Mean: {}'.format(trader.buyer.sub_buyers[1].threshold * 100, round(np.mean(lower_threshold), 3)))
             plt.axvline(np.mean(upper_threshold),color='r')
             plt.axvline(np.mean(lower_threshold),color='b')
             plt.legend(fontsize=15)
             plt.title(f'{trader.name}',fontsize=20, pad=20)
             plt.ylabel('Next Change', fontsize=15, labelpad=25)
 
-            # plt.xlim([-40, 40])
 

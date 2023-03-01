@@ -9,31 +9,32 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-# 매매일지 작성
+
 def decision(lst_trader:list, dtype='test', data=None, data_scaled=None):
     
     '''
     
-    lst_trader
-    - 트레이더들이 저장된 리스트 
+    [ Explanation ]
+    A function that creates a data frame that records buying and selling behavior for all dates
     
-    dtype
-    - [default] 'test' -> 트레이더에 저장되어있는 test dataset으로 계산 
-    - None -> 사용자 지정 데이터 
     
-    data
-    - [default] None 
-    - 원본 데이터 
+    [ input ] 
+    - lst_trader: (pd.DataFrame) Data to convert into time series data
+    - dtype: (str) If 'test', calculate the rate of return from the test dataset stored in the trader, 
+                   If 'none' is data, data_sclared is used to calculate the rate of return with the desired data set.
+    - data & data_scaled (pd.DataFrame) Dataset to calculate yield if dtype is set to 'none'
     
-    data_scaled
-    - [default] None 
-    - 표준화 데이터 
     
-    '''
+    [ output ]
+    - df_signal_all: (pd.DataFrame) Selling, buying records for all dates
+    
+    '''  
+    
         
     df_signal_all = pd.DataFrame()
     for trader in lst_trader:
-        # 매수일지, 매도일지 작성 
+        
+        # Write a buying diary, a selling diary
         df_signal_buy = trader.buyer.decision_all(trader, dtype='test', data=None, data_scaled=None)
         df_signal_sell = trader.seller.decision_all(trader, dtype='test', data=None, data_scaled=None)
         
@@ -47,8 +48,26 @@ def decision(lst_trader:list, dtype='test', data=None, data_scaled=None):
     
     return df_signal_all 
         
-# 수익률 계산
-def simulation(df_signal_all, init_budget, init_stock): 
+
+    
+def simulation(df_signal_all, init_budget, init_stock, fee=0.01): 
+    
+    '''
+    
+    [ Explanation ]
+    A function that calculates the rate of return from the trading log (df_signal_all).
+    
+    
+    [ input ] 
+    - df_signal_all: (pd.DataFrame) decision The resulting value of the function. Sales Diary Data Frame.
+    - init_budget: (int) an initial budget
+    - init_stock: (dict) Type of {'ticker': count}. It is a dictionary containing the number of stocks purchased. You can put in an empty dictionary unless it's a special case.
+    
+    
+    [ output ]
+    - df_history_all: (pd.DataFrame) Data frames of buy, sell records for all dates
+    
+    '''  
     
     df_history_all = pd.DataFrame()
     for trader_id, df_signal in df_signal_all.groupby('Trader_id'):
@@ -68,7 +87,7 @@ def simulation(df_signal_all, init_budget, init_stock):
             df_sell = df_signal_date[(df_signal_date['+(buy)/-(sell)'] == '-') & (df_signal_date['Code'].isin(lst_code))]
             for row_sell in df_sell.values.tolist():
                 code, amount, close = row_sell[2], row_sell[4], row_sell[5]
-                budget += close * stock[code]
+                budget += close * stock[code] * (1.0-fee)
                 stock[code] *= (1-amount)
                 
                 if stock[code] == 0.0:
@@ -92,26 +111,55 @@ def simulation(df_signal_all, init_budget, init_stock):
                 
                 amount /= len(df_buy)
                 stock[code] += int( temp_budget * amount / close )
-                budget -= close * stock[code] 
+                budget -= close * stock[code] * (1.0+fee)
             
         df_history_all = df_history_all.append(pd.DataFrame(lst_history, columns=['Trader_id', 'Sell_date', 'Budget', 'Yield', 'Stock']))
         print(f"== {trader_id} complete ==")
 
     return df_history_all
 
-# 리더보드
+
+
 def leaderboard(df):
+    
+    '''
+    
+    [ Explanation ]
+    A function that outputs a per-trader yield leaderboard data frame.
+    
+    
+    [ input ] 
+    - df: (pd.DataFrame) Sales record (df_history_all)
+    
+    
+    [ output ]
+    - df_rank: (pd.DataFrame) Data frames with yields sorted in descending order
+    
+    '''  
+    
     df_rank = pd.DataFrame()
     for trader_id in df['Trader_id'].unique():
         sr1 = df.loc[df['Trader_id']==trader_id, ['Trader_id', 'Yield']].iloc[-1]
         df_rank = df_rank.append(sr1)
     return df_rank.sort_values(by='Yield', ascending=False).reset_index(drop=True)
 
-# 수익률 시각화
+
+
 def yield_plot(df):
-    import seaborn as sns
-    import matplotlib.pyplot as plt
-    import matplotlib as mpl
+    
+    '''
+    
+    [ Explanation ]
+    A function that outputs a graph that visualizes returns for all traders and dates    
+    
+    [ input ] 
+    - df: (pd.DataFrame) Sales record (df_history_all)
+    
+    
+    [ output ]
+    - df_rank: (pd.DataFrame) Yield visualization graph
+    
+    '''  
     
     mpl.style.use("seaborn-whitegrid")
 

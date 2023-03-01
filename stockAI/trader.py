@@ -9,55 +9,57 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, confu
 
 
 
-# Trader
+
 class Trader: 
     def __init__(self):
         self.name = None
         
         # condition
-        self.label = None ## (추가) 
-        self.scaling = None ## (추가)
+        self.label = None 
         
         # dataset
         self.train_code_date = None
         self.test_code_date = None
         
-        self.trainX = None ## (추가)
-        self.testX = None ## (추가)        
-        self.trainX_scaled = None ## (추가)
-        self.testX_scaled = None ## (추가)
+        self.trainX = None 
+        self.testX = None       
+        self.trainX_scaled = None
+        self.testX_scaled = None
         
-        self.trainY = None ## (추가)
-        self.testY = None ## (추가)        
-        self.train_classification = None ## (추가)
-        self.test_classification = None ## (추가)
+        self.trainY = None 
+        self.testY = None        
+        self.train_classification = None
+        self.test_classification = None 
         
         # trader
         self.buyer = None
         self.seller = None
         
-# Buyer
+
+
 class Buyer: 
     def __init__(self, sub_buyers):
         self.sub_buyers = sub_buyers
         pass
     
-    def decision_all(self, trader_object, dtype='test', data=None, data_scaled=None): # threshold를 넘는 에측확률 + 변동성 조건 만족하는 data (최종 매수 데이터 결정)
-        # 매수 시그널 리스트 
+    def decision_all(self, trader_object, dtype='test', data=None, data_scaled=None): 
+        
+        # Stock Purchase Signal List
         total_amount = 1.0
         
         # change, close, trading_value 
-        # conditional_buyer: df 
+        # ConditionalBuyer: df 
         # machinelearning_buyer: trader_object.testX_scaled 
         
         for sub in self.sub_buyers: # [b1, b2]
-            if type(sub) == conditional_buyer: 
+            if type(sub) == ConditionalBuyer:
+
                 if dtype == 'test': 
                     df = trader_object.testX
                 
                 amount = sub.decision(df) # 원본 데이터 
                 
-            elif type(sub) == machinelearning_buyer:
+            elif type(sub) == MachinelearningBuyer:
                 
                 if dtype == 'test':
                     if type(trader_object.testX_scaled) != 'NoneType':
@@ -76,7 +78,7 @@ class Buyer:
             lst_code_date = trader_object.test_code_date
 
         
-        # 매수 일지 작성 
+        # Write a purchase diary 
         lst_buy_signal = []
         for i, row  in tqdm(df.iterrows()):
             amount = total_amount[i]
@@ -86,14 +88,14 @@ class Buyer:
         return pd.DataFrame(lst_buy_signal, columns = ['Trader_id', 'Date', 'Code', '+(buy)/-(sell)', 'Amount', 'Close']) 
     
 
-    def train(self, X, y):  # 모델 학습 
+    def train(self, X, y):  # model fitting 
         for sub in self.sub_buyers:
-            if type(sub) == machinelearning_buyer:
+            if type(sub) == MachinelearningBuyer:
                 sub.train(X, y)
         
 
         
-class conditional_buyer:
+class ConditionalBuyer:
     def __init__(self):
         self.condition = None
 
@@ -101,7 +103,7 @@ class conditional_buyer:
         return self.condition(df)
     
     
-class machinelearning_buyer:
+class MachinelearningBuyer:
     def __init__(self):
         self.algorithm = None
         self.threshold = None
@@ -122,7 +124,7 @@ class machinelearning_buyer:
         
         return amount 
     
-# Seller
+    
 class Seller:
     def __init__(self, sub_seller):
         self.sub_seller = sub_seller
@@ -131,7 +133,7 @@ class Seller:
         if dtype == 'test': 
             df = trader_object.testX
         
-        # 매수 시그널 리스트 
+        # Stock Purchase Signal List 
         sub = self.sub_seller
         total_amount = 1
         total_amount *= sub.decision_next_day_sell(df)
@@ -139,7 +141,7 @@ class Seller:
         if dtype=='test':
             lst_code_date = trader_object.test_code_date
         
-        # 매도 일지 작성 
+        # Preparation of a sales diary
         lst_sell_signal = []
         for i, row  in tqdm(df.iterrows()):
             amount = total_amount[i]

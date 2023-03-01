@@ -6,8 +6,23 @@ import ta
 from tqdm import tqdm 
 
 
-# 보조지표 추가
 def add_index(data, index_list:list):
+    
+    '''
+    
+    [ Explanation ]
+    Adding multiple secondary indicators to stock price data
+    
+    
+    [ input ] 
+    - data: (pd.DataFrame) Data to add secondary indicators
+    - index_list: (list) List of secondary indicators to add
+    
+    
+    [ output ]
+    - result: (pd.DataFrame) Data Frames with Additional Indicators
+    
+    '''
     
     result = pd.DataFrame()
     
@@ -86,8 +101,27 @@ def add_index(data, index_list:list):
     
     return result
 
-# 스케일링
-def scaling(data, scaler_type, window_size=None):
+
+
+
+def scaling(data, scaler_type):
+    
+    '''
+    
+    [ Explanation ]
+    Functions that standardize stock price data
+    
+    
+    [ input ] 
+    - data: (pd.DataFrame) Data to Standardize
+    - scaler_type: (str) Choose between 'minmax', 'standard', 'robust', and 'div-close'.
+    
+    
+    [ output ]
+    - df_result: (pd.DataFrame) Data Frames with Additional Indicators
+    
+    '''    
+    
     
     class UserMinMaxScaler:
         def __init__(self):
@@ -214,9 +248,28 @@ def scaling(data, scaler_type, window_size=None):
     return df_result[col_temp]
 
 
-# time series data
+
+
 def time_series(data, day=10): 
-    from tqdm import tqdm
+    
+    
+    '''
+    
+    [ Explanation ]
+    A function that converts a daily stock price dataset into a time series datasets
+    
+    
+    [ input ] 
+    - data: (pd.DataFrame) Data to convert into time series data
+    - day: (str) Set how many days to convert to time series data
+    
+    
+    [ output ]
+    - df: (pd.DataFrame) Data frames converted into time series data
+    
+    '''  
+    
+    
 
     df = pd.DataFrame()
     for code, df_stock in tqdm(data.groupby('Code')): 
@@ -229,14 +282,14 @@ def time_series(data, day=10):
 
         lst_result_total = []
         for idx, (row, next_change) in enumerate(zip(lst_stock, lst_nc)): 
-            if (idx < day-1) or (idx >= len(lst_stock)-1): # 예외 처리 
+            if (idx < day-1) or (idx >= len(lst_stock)-1):  
                 continue
 
             date = row[1]
 
-            # lst_sub_stock: D-9 ~ D0 데이터  
+            # lst_sub_stock: D-9 ~ D0 data
             lst_sub_stock = lst_stock[idx-day+1:idx+1]
-            lst_sub_stock = lst_sub_stock[:, 2:] # code(0), date(1) 제거 
+            lst_sub_stock = lst_sub_stock[:, 2:] # code(0), date(1) 
 
             lst_result = []
             for row2 in lst_sub_stock: 
@@ -247,7 +300,7 @@ def time_series(data, day=10):
         df = df.append(pd.DataFrame(lst_result_total))
         
         
-    # 컬럼 리스트 생성 
+    # Creating a Column List
     lst_cols = []
     for i in range(day-1, -1, -1):
         for col in df_stock.columns[2:]: 
