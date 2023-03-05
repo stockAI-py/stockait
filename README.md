@@ -1,4 +1,4 @@
-<img src="/image/logo_remove.png" width="1000" height="500">
+<img src="/image/logo_remove.png" width="1000" height="300">
 
 
 ------
