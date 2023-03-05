@@ -1,5 +1,5 @@
 <div style="text-align : center;">
- <img src="block" width="310" height="127">
+ <img src="/image/logo_remove.png" width="310" height="127">
 </div>
 
 ------
