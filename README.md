@@ -1,11 +1,5 @@
-<div class="DivClass">
-     <img src="/image/logo_remove.png" width="310" height="127">
-     <style>
-     .DivClass {
-        text-align: center;
-      }
-      </style>
-</div>
+<img src="/image/logo_remove.png" width="310" height="127">
+
 
 ------
 ## stockAI: python machine learning framework for stock prediction
