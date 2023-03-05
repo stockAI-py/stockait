@@ -1,5 +1,10 @@
-<div style="text-align : center;">
- <img src="/image/logo_remove.png" width="310" height="127">
+<div class="DivClass">
+     <img src="/image/logo_remove.png" width="310" height="127">
+     <style>
+     .DivClass {
+        text-align: center;
+      }
+      </style>
 </div>
 
 ------
