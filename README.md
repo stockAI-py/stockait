@@ -1,4 +1,6 @@
-<img src="/image/logo_remove.png" width="1000" height="300">
+<p align="center">
+      <img width="300" height="127" src="/image/logo_remove.png" width="310" height="127"">
+    </p>
 
 
 ------
