@@ -1,4 +1,4 @@
-<img src="./image/logo.png" width="600" height="200"/>
+<img src="./image/logo.PNG" width="600" height="200"/>
 
 ------
 ## stockAI: python machine learning framework for stock prediction
