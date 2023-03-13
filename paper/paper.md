@@ -87,4 +87,5 @@ The simulation function calculates the return based on the trading journal. The 
 ![yield graph for each trading day](../image/FIGURE7.png)
 
 
+
 ## References
