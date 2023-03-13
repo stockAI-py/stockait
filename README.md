@@ -47,6 +47,13 @@ The following is a description of the dataset provided by stockAI, the dependent
 
 
 ------
+## Installation
+~~
+
+<br>
+<br>
+
+------
 ## How to use stockAI? 
 You can find more information about using stockAI in the `tutorials` folder.
 
