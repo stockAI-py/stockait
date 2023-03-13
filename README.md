@@ -10,19 +10,7 @@ stockAI is an integrated machine learning package for technical research of stoc
 <br>
 <br>
 
-------
-## Datasets provided
-The following is a description of the dataset provided by stockAI, the dependent variable that are set by default.
 
-▪️ Dataset
-- Dataset is a daily stock price dataset that provides open, high, low, close, and volume columns by default.
-
-▪️ Dependent variable
-- `Dependent variable`: The `add_index` function creates a dependent variable `next_change` column, which stockAI recognizes as a dependent variable by default. `next_change` means the rate of change in the closing price of the next day.
-
-
-<br>
-<br>
 
 
 ------
@@ -41,6 +29,22 @@ The following is a description of the dataset provided by stockAI, the dependent
 
 <br>
 <br>
+
+
+------
+## Datasets provided
+The following is a description of the dataset provided by stockAI, the dependent variable that are set by default.
+
+▪️ Dataset
+- Dataset is a daily stock price dataset that provides open, high, low, close, and volume columns by default.
+
+▪️ Dependent variable
+- `Dependent variable`: The `add_index` function creates a dependent variable `next_change` column, which stockAI recognizes as a dependent variable by default. `next_change` means the rate of change in the closing price of the next day.
+
+
+<br>
+<br>
+
 
 ------
 ## How to use stockAI? 
