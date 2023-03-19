@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="stockAI-py", # Replace with your own username
+    name="stockai-py", # Replace with your own username
     version="0.0.1",
     author="Eunsu Kim, Sieun Kim, Eunji Cha, Yujin Cha",
     author_email="stockai2023@gmail.com",
