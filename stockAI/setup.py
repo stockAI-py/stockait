@@ -7,7 +7,7 @@ setuptools.setup(
     name="stockAI", # Replace with your own username
     version="0.0.1",
     author="Eunsu Kim, Sieun Kim, Eunji Cha, Yujin Cha",
-    author_email="author@example.com",
+    author_email="eunsugim815@gmail.com",
     description="A small example package",
     long_description=long_description,
     long_description_content_type="text/markdown",
