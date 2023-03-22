@@ -22,7 +22,7 @@ def get_tickers(markets:list, date:str):
   
     '''
     
-    df = pd.read_parquet("https://media.githubusercontent.com/media/stockAI-py/stock_data/main/v1_krx_2001_2022/krx_20010101_20221231.parquet")
+    df = pd.read_parquet("https://media.githubusercontent.com/media/stockAir-py/stock_data/main/v1_krx_2001_2022/krx_20010101_20221231.parquet")
     df_market = df[df['Market'].isin(markets)]
     lst_tickers = df_market.loc[df_market['Date'] >= f'{date}-01-01', 'Code'].unique().tolist() 
     return lst_tickers
