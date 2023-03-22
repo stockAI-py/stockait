@@ -55,13 +55,13 @@ The following is a description of the dataset provided by stockAir, the dependen
 
 ------
 ## How to use stockAir? 
-You can find more information about using stockAI in the `tutorials` folder.
+You can find more information about using stockAir in the `tutorials` folder.
 
 
 ### ▪️ method 
-The following image summarizes the methods of stockAI.  
+The following image summarizes the methods of stockAir.  
 
-![img](./image/stockAI_img1.png)
+![img](./image/stockAir_img1.png)
 
 
 Specific methods are as follows.
