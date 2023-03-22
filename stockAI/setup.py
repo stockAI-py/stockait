@@ -8,10 +8,10 @@ setuptools.setup(
     version="0.0.1",
     author="Eunsu Kim, Sieun Kim, Eunji Cha, Yujin Cha",
     author_email="stockai2023@gmail.com",
-    description="Make your stock investment smarter, join StockAI!",
+    description="Make your stock investment smarter, join StockAir!",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/stockAI-py/stockAI",
+    url="https://github.com/stockAI-py/stockAir",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
