@@ -39,8 +39,8 @@ def get_tickers(markets:list):
     
     lst_tickers = []
     for market in markets:
-        lst_tickers += table.get_item(Key={"key_market":market})["Item"]['Code'] ## 코넥스의 데이터만 불러온다면
-    
+        lst_tickers += table.get_item(Key={"key_market":market})["Item"]['Code'] 
+
     return lst_tickers
 
 
@@ -83,4 +83,4 @@ def load_data(date:list, tickers:list):
 
     df_code = df_code.sort_values(by=["Code", 'Date'])
     
-    return raw_stock_df
+    return df_code
