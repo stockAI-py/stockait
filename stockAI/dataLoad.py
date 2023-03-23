@@ -2,9 +2,16 @@ import numpy as np
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
+from tqdm import tqdm
+import boto3
+import os
+import sqlalchemy 
+from sqlalchemy import create_engine
+from dotenv import load_dotenv
+load_dotenv()
 
 
-def get_tickers(markets:list, date:str): 
+def get_tickers(markets:list): 
     
     '''
     
@@ -13,18 +20,27 @@ def get_tickers(markets:list, date:str):
     
     
     [ input ] 
-    - markets: (list) Put the market you want to bring in in on the list.
-    - date: (str) 
+    - markets: (list) Put the markets you want to bring in in on the list.
     
     
     [ output ]
-    - lst_tickers: (list) Bring up the tickers that are being traded based on this date
+    - lst_tickers: (list) Outputs the tickers for the entered markets.
   
     '''
+    AWS_ACCESS_KEY_ID=os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY=os.getenv("AWS_SECRET_ACCESS_KEY")
+    REGION=os.getenv("REGION")
     
-    df = pd.read_parquet("https://media.githubusercontent.com/media/stockAI-py/stock_data/main/v1_krx_2001_2022/krx_20010101_20221231.parquet")
-    df_market = df[df['Market'].isin(markets)]
-    lst_tickers = df_market.loc[df_market['Date'] >= f'{date}-01-01', 'Code'].unique().tolist() 
+    dynamodb = boto3.resource('dynamodb',
+                              region_name=REGION,
+                              aws_access_key_id=AWS_ACCESS_KEY_ID,
+                              aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    table = dynamodb.Table("MARKET_CODE")
+    
+    lst_tickers = []
+    for market in markets:
+        lst_tickers += table.get_item(Key={"key_market":market})["Item"]['Code'] ## 코넥스의 데이터만 불러온다면
+    
     return lst_tickers
 
 
@@ -46,9 +62,25 @@ def load_data(date:list, tickers:list):
     - df_code: (pd.DataFrame) Daily stock price data for dates and stocks entered as input values.
     
     '''
+    host=os.getenv("HOST")
+    user=os.getenv("USERNAME")
+    passwd=os.getenv("PASSWORD")
+    db="STOCK_DATA"
     
-    df = pd.read_parquet("https://media.githubusercontent.com/media/stockAI-py/stock_data/main/v1_krx_2001_2022/krx_20010101_20221231.parquet")
-    df_date = df[(df['Date'] >= date[0]) & (df['Date'] <= date[1])]
-    df_code = df_date[df_date['Code'].isin(tickers)].reset_index(drop=True)
+    db_connection_str = f'mysql+pymysql://{user}:{passwd}@{host}/{db}'
+    db_connection = create_engine(db_connection_str)
+    conn = db_connection.connect()
+
+    df_code = pd.DataFrame() 
+    for code in tqdm(tickers): 
+        sql_query = f'''
+                    SELECT * 
+                    FROM stock_{code}
+                    WHERE Date BETWEEN "{date[0]}" AND "{date[1]}"
+                    '''
+        stock_code = pd.read_sql(sql = sql_query, con = conn) 
+        df_code = pd.concat([df_code, stock_code], axis=0)
+
+    df_code = df_code.sort_values(by=["Code", 'Date'])
     
-    return df_code
+    return raw_stock_df

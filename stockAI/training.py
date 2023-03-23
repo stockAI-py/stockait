@@ -126,10 +126,10 @@ def get_eval_by_threshold(lst_trader):
         auc = roc_auc_score(trader.test_classification.loc[b1.decision(trader.testX)], pred_proba)
 
         ax1.set_title(f'auc score: {round(auc, 3)}',fontsize=15)
-        ax1.plot(fpr,tpr,label="AUC="+str(auc))
+        ax1.plot(fpr,tpr,label="AUC="+str(auc), linewidth=1, color='#f1404b')
         ax1.plot([0, 1], [0, 1], color='green', linestyle='--')
-        ax1.set_ylabel('True Positive Rate', fontsize=13)
-        ax1.set_xlabel('False Positive Rate', fontsize=13)
+        ax1.set_ylabel('True Positive Rate', fontsize=10)
+        ax1.set_xlabel('False Positive Rate', fontsize=10)
         ax1.legend(loc=4)
 
 
@@ -137,16 +137,16 @@ def get_eval_by_threshold(lst_trader):
             binarizer = Binarizer(threshold = i).fit(pred_proba)
             pred = binarizer.transform(pred_proba)
             
-            ax2.scatter(i, precision_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#daa933', label='Precision') 
-            ax2.scatter(i, recall_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#37babc', label ='Recall')  
-            ax2.scatter(i, f1_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#b4d125', label='f1 score') 
-            if i == 0.1:
+            ax2.scatter(i, precision_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#f1404b', label='Precision', s=10) 
+            ax2.scatter(i, recall_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#gray', label ='Recall', s=10)  
+            ax2.scatter(i, f1_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#a7a7a2', label='f1 score', s=10) 
+            if i == 0., s=101:
                 ax2.legend(fontsize = 10)
 
-            ax2.axvline(0.2, color = '#c97878', linestyle='--')
-            ax2.axvline(0.4, color = '#c97878', linestyle='--')
-            ax2.axvline(0.6, color = '#c97878', linestyle='--')
-            ax2.axvline(0.8, color = '#c97878', linestyle='--')
+            ax2.axvline(0.2, color = '#lightgray', linestyle='--')
+            ax2.axvline(0.4, color = '#lightgray', linestyle='--')
+            ax2.axvline(0.6, color = '#lightgray', linestyle='--')
+            ax2.axvline(0.8, color = '#lightgray', linestyle='--')
         
             ax2.set_title('Precision, Recall, f1 score',fontsize=15)
             ax2.set_ylabel("score", fontsize=13)
