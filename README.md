@@ -61,7 +61,7 @@ You can find more information about using stockAir in the `tutorials` folder.
 ### ▪️ method 
 The following image summarizes the methods of stockAir.  
 
-![img](./image/stockAir_img1.png)
+![img](./image/stockAI_img1.png)
 
 
 Specific methods are as follows.
