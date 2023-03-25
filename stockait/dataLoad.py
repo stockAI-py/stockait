@@ -11,6 +11,44 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+def get_countries(): 
+    
+    '''
+    
+    [ Explanation ]
+    Get the country provided by stockait
+    
+    [ output ]
+    - lst_countries: (list) Returns the list of countries provided.
+
+    '''
+    
+    return ['Argentina', 'Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'China', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hong Kong', 'Iceland', 'India', 'Indonesia', 'Ireland', 'Israel', 'Italy', 'Latvia', 'Lithuania', 'Malaysia', 'Mexico', 'Netherlands', 'New Zealand', 'Norway', 'Portugal', 'Qatar', 'Russia', 'Singapore', 'South Korea', 'Spain', 'Sweden', 'Switzerland', 'Taiwan', 'Thailand', 'Turkey', 'USA', 'United Kingdom', 'Venezuela']
+
+
+    
+def get_markets(country: str):
+    
+    '''
+    
+    [ Explanation ]
+    Bring up the tickers
+    
+    
+    [ input ] 
+    - markets: (str) Put the country you want 
+    
+    
+    [ output ]
+    - lst_tickers: (list) Outputs the markets for the entered country.
+  
+    '''
+    
+    dic_country2market = {'Argentina': ['BUE'], 'Australia': ['ASX'], 'Austria': ['VIE'], 'Belgium': ['BRU'], 'Brazil': ['SAO'], 'Canada': ['CNQ', 'TOR', 'VAN'], 'China': ['SHH', 'SHZ'], 'Denmark': ['CPH'], 'Estonia': ['TAL'], 'Finland': ['HEL'], 'France': ['ENX', 'FRA', 'PAR'], 'Germany': ['BER', 'DUS', 'EUX', 'GER', 'HAM', 'HAN', 'MUN', 'STU'], 'Greece': ['ATH'], 'Hong Kong': ['HKG'], 'Iceland': ['ICE'], 'India': ['BSE', 'NSI'], 'Indonesia': ['JKT'], 'Ireland': ['ISE'], 'Israel': ['TLV'], 'Italy': ['MIL', 'TLO'], 'Latvia': ['RIS'], 'Lithuania': ['LIT'], 'Malaysia': ['KLS'], 'Mexico': ['MEX'], 'Netherlands': ['AMS'], 'New Zealand': ['NZE'], 'Norway': ['OSL'], 'Portugal': ['LIS'], 'Qatar': ['DOH'], 'Russia': ['MCX'], 'Singapore': ['SES'], 'South Korea': ['KOSPI', 'KOSDAQ', 'KONEX'], 'Spain': ['MAD', 'MCE'], 'Sweden': ['STO'], 'Switzerland': ['EBS'], 'Taiwan': ['TAI', 'TWO'], 'Thailand': ['SET'], 'Turkey': ['IST'], 'USA': ['ASE', 'NCM', 'NGM', 'NMS', 'NYQ', 'OBB', 'PCX', 'PNK'], 'United Kingdom': ['IOB', 'LSE'], 'Venezuela': ['CCS']}
+
+    return dic_country2market[country]
+    
+    
 def get_tickers(markets:list): 
     
     '''
@@ -62,6 +100,8 @@ def load_data(date:list, tickers:list):
     - df_code: (pd.DataFrame) Daily stock price data for dates and stocks entered as input values.
     
     '''
+
+    
     host=os.getenv("HOST")
     user=os.getenv("USERNAME")
     passwd=os.getenv("PASSWORD")
