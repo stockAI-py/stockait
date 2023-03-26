@@ -17,7 +17,7 @@ stockait is an integrated machine learning package for technical research of sto
 ## Why stockait? 
 - **Stock Price Big Data Collection** 
 
- 'stockAir' stores big data in github and provides it to users. Because 'stockAir' is a research package, the data provided here focused on collecting data, storing it reliably, and storing it in a high-quality way, rather than collecting it in real time with unstable crawling methods.
+ 'stockait' stores big data in github and provides it to users. Because 'stockAir' is a research package, the data provided here focused on collecting data, storing it reliably, and storing it in a high-quality way, rather than collecting it in real time with unstable crawling methods.
 
 - **An integrated package that enables the entire process of machine learning** 
 
@@ -39,7 +39,7 @@ The following is a description of the dataset provided by stockait, the dependen
 - Dataset is a daily stock price dataset that provides open, high, low, close, and volume columns by default.
 
 ▪️ Dependent variable
-- `Dependent variable`: The `add_index` function creates a dependent variable `next_change` column, which stockAir recognizes as a dependent variable by default. `next_change` means the rate of change in the closing price of the next day.
+- `Dependent variable`: The `add_index` function creates a dependent variable `next_change` column, which stockait recognizes as a dependent variable by default. `next_change` means the rate of change in the closing price of the next day.
 
 
 <br>
@@ -54,12 +54,12 @@ The following is a description of the dataset provided by stockait, the dependen
 <br>
 
 ------
-## How to use stockAir? 
-You can find more information about using stockAir in the `tutorials` folder.
+## How to use stockait? 
+You can find more information about using stockait in the `tutorials` folder.
 
 
 ### ▪️ method 
-The following image summarizes the methods of stockAir.  
+The following image summarizes the methods of stockait.  
 
 ![img](./image/stockAI_img1.png)
 
