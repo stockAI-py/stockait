@@ -4,8 +4,8 @@ with open("README.md", "r", encoding='utf-8') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="stockair", # Replace with your own username
-    version="0.0.1",
+    name="stockait", # Replace with your own username
+    version="0.0.0",
     author="Eunsu Kim, Sieun Kim, Eunji Cha, Yujin Cha",
     author_email="stockai2023@gmail.com",
     description="Make your stock investment smarter, join StockAir!",
