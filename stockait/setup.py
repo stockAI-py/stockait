@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="stockAir",   # pypi 에 등록할 라이브러리 이름
+    name="stockait",   # pypi 에 등록할 라이브러리 이름
     version="0.0.0",    # pypi 에 등록할 version (수정할 때마다 version up을 해줘야 함)
     description="Hey insutance! Who are you?",
     author="insutance",
