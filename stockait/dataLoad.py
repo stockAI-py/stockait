@@ -7,8 +7,7 @@ import boto3
 import os
 import sqlalchemy 
 from sqlalchemy import create_engine
-from dotenv import load_dotenv
-load_dotenv()
+
 
 
 def get_countries(): 
