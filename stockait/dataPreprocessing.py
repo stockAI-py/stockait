@@ -73,7 +73,7 @@ def add_index(data, index_list:list):
                     'VIpos':ta.trend.vortex_indicator_pos(high=H, low=L, close=C, fillna=True),
                     'TRIX':ta.trend.trix(close=C, fillna=True),
                     'MI':ta.trend.mass_index(high=H, low=L, fillna=True),
-                    'CCI':ta.trend.cci(high=H, low=L, close=C, fillna=True),
+                    'CCI':ta.trend.cci(high=H, low=L, close=C, fillna=False),
                     'DPO':ta.trend.dpo(close=C, fillna=True),
                     'KST':ta.trend.kst(close=C, fillna=True),
                     'Ichimoku':ta.trend.ichimoku_a(high=H, low=L, fillna=True),
@@ -87,7 +87,7 @@ def add_index(data, index_list:list):
                     'SR':ta.momentum.stoch(close=C, high=H, low=L, fillna=True),
                     'WR':ta.momentum.williams_r(high=H, low=L, close=C, fillna=True),
                     'AO':ta.momentum.awesome_oscillator(high=H, low=L, fillna=True),
-                    'KAMA':ta.momentum.kama(close=C, fillna=True),
+                    # 'KAMA':ta.momentum.kama(close=C, fillna=False),
                     'ROC':ta.momentum.roc(close=C, fillna=True),
                     'PPO':ta.momentum.ppo(close=C, fillna=True),
                     'PVO':ta.momentum.pvo(volume=V, fillna=True)
@@ -99,7 +99,7 @@ def add_index(data, index_list:list):
         result = result.append(stock_df)
         result = result.dropna()
     
-    return result
+    return result.reset_index(drop=True)
 
 
 

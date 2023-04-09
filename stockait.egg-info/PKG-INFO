@@ -1,3 +1,19 @@
+Metadata-Version: 2.1
+Name: stockait
+Version: 0.0.6
+Summary: Make your stock investment smarter, join StockAit!
+Home-page: https://github.com/stockAI-py/stockait
+Author: Eunsu Kim, Sieun Kim, Eunji Cha, Yujin Cha
+Author-email: stockai2023@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+
 <p align="center">
       <img width="600" height="254" src="/image/logo_remove.png">
     </p>
@@ -168,3 +184,5 @@ sai.leaderboard(df)
 sai.yield_plot(df)
 ```
 ![img](./image/yield_plot.png)
+
+

@@ -138,15 +138,15 @@ def get_eval_by_threshold(lst_trader):
             pred = binarizer.transform(pred_proba)
             
             ax2.scatter(i, precision_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#f1404b', label='Precision', s=10) 
-            ax2.scatter(i, recall_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#gray', label ='Recall', s=10)  
+            ax2.scatter(i, recall_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='gray', label ='Recall', s=10)  
             ax2.scatter(i, f1_score(trader.test_classification.loc[b1.decision(trader.testX)], pred), color='#a7a7a2', label='f1 score', s=10) 
-            if i == 0., s=101:
+            if i == 0.1:
                 ax2.legend(fontsize = 10)
 
-            ax2.axvline(0.2, color = '#lightgray', linestyle='--')
-            ax2.axvline(0.4, color = '#lightgray', linestyle='--')
-            ax2.axvline(0.6, color = '#lightgray', linestyle='--')
-            ax2.axvline(0.8, color = '#lightgray', linestyle='--')
+            ax2.axvline(0.2, color = 'lightgray', linestyle='--')
+            ax2.axvline(0.4, color = 'lightgray', linestyle='--')
+            ax2.axvline(0.6, color = 'lightgray', linestyle='--')
+            ax2.axvline(0.8, color = 'lightgray', linestyle='--')
         
             ax2.set_title('Precision, Recall, f1 score',fontsize=15)
             ax2.set_ylabel("score", fontsize=13)

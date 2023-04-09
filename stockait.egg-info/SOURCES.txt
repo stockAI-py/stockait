@@ -1,0 +1,14 @@
+LICENSE.md
+README.md
+setup.py
+stockait/__init__.py
+stockait/dataLoad.py
+stockait/dataPreprocessing.py
+stockait/simulation.py
+stockait/trader.py
+stockait/training.py
+stockait.egg-info/PKG-INFO
+stockait.egg-info/SOURCES.txt
+stockait.egg-info/dependency_links.txt
+stockait.egg-info/requires.txt
+stockait.egg-info/top_level.txt

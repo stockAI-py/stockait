@@ -1,0 +1,13 @@
+numpy
+pandas
+tqdm
+yfinance
+xgboost
+lightgbm
+ta
+matplotlib
+sklearn
+seaborn
+boto3
+sqlalchemy
+pymysql

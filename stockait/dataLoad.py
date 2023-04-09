@@ -65,9 +65,11 @@ def get_tickers(markets:list):
     - lst_tickers: (list) Outputs the tickers for the entered markets.
   
     '''
-    AWS_ACCESS_KEY_ID=os.getenv("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY=os.getenv("AWS_SECRET_ACCESS_KEY")
-    REGION=os.getenv("REGION")
+    
+    # read_only account 
+    AWS_ACCESS_KEY_ID="AKIAUCRIFWMNVPXPQCZ6"
+    AWS_SECRET_ACCESS_KEY="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"
+    REGION="ap-southeast-2"
     
     dynamodb = boto3.resource('dynamodb',
                               region_name=REGION,
@@ -79,7 +81,7 @@ def get_tickers(markets:list):
     for market in markets:
         lst_tickers += table.get_item(Key={"key_market":market})["Item"]['Code'] 
 
-    return lst_tickers
+    return [t for t in lst_tickers if "K" not in t]
 
 
 
@@ -101,10 +103,10 @@ def load_data(date:list, tickers:list):
     
     '''
 
-    
-    host=os.getenv("HOST")
-    user=os.getenv("USERNAME")
-    passwd=os.getenv("PASSWORD")
+    # read_only account 
+    host="146.56.39.107"
+    user="stockuser"
+    passwd="stockai123"
     db="STOCK_DATA"
     
     db_connection_str = f'mysql+pymysql://{user}:{passwd}@{host}/{db}'
@@ -116,11 +118,11 @@ def load_data(date:list, tickers:list):
         sql_query = f'''
                     SELECT * 
                     FROM stock_{code}
-                    WHERE Date BETWEEN "{date[0]}" AND "{date[1]}"
+                    WHERE (Date BETWEEN "{date[0]}" AND "{date[1]}") AND (Open NOT IN (0)) AND (Low != High) 
                     '''
         stock_code = pd.read_sql(sql = sql_query, con = conn) 
         df_code = pd.concat([df_code, stock_code], axis=0)
 
     df_code = df_code.sort_values(by=["Code", 'Date'])
     
-    return df_code
+    return df_code.reset_index(drop=True)
