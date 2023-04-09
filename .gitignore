@@ -5,3 +5,5 @@ build/
 dist/
 */.ipynb_checkpoints/*
 .ipynb_checkpoints
+stockait.egg-info
+
