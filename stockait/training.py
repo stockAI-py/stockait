@@ -127,7 +127,7 @@ def get_eval_by_threshold(lst_trader):
 
         ax1.set_title(f'auc score: {round(auc, 3)}',fontsize=15)
         ax1.plot(fpr,tpr,label="AUC="+str(auc), linewidth=1, color='#f1404b')
-        ax1.plot([0, 1], [0, 1], color='green', linestyle='--')
+        ax1.plot([0, 1], [0, 1], color='gray', linestyle='--')
         ax1.set_ylabel('True Positive Rate', fontsize=10)
         ax1.set_xlabel('False Positive Rate', fontsize=10)
         ax1.legend(loc=4)
