@@ -1,6 +1,6 @@
 <p align="center">
-      <img width="600" height="254" src="/image/stockait.png">
-    </p>
+      <img width="600" height="254" src="/image/logo_remove.PNG">
+ </p>
 
 
 ------
@@ -17,7 +17,7 @@ stockait is an integrated machine learning package for technical research of sto
 ## Why stockait? 
 - **Stock Price Big Data Collection** 
 
- 'stockait' stores big data in github and provides it to users. Because 'stockAir' is a research package, the data provided here focused on collecting data, storing it reliably, and storing it in a high-quality way, rather than collecting it in real time with unstable crawling methods.
+ 'stockait' stores big data in github and provides it to users. Because 'stockAit' is a research package, the data provided here focused on collecting data, storing it reliably, and storing it in a high-quality way, rather than collecting it in real time with unstable crawling methods.
 
 - **An integrated package that enables the entire process of machine learning** 
 
