@@ -6,4 +6,5 @@ dist/
 */.ipynb_checkpoints/*
 .ipynb_checkpoints
 stockait.egg-info
-
+tutorials/*.parquet
+tutorials/*.csv

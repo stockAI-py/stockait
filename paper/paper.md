@@ -1,5 +1,5 @@
 ---
-title: 'StockAI:Python Machine Learning Framework for stock predcition.'
+title: 'StockAIT:Python Machine Learning Framework for stock predcition.'
 tags:
   - Python
   - jupyter notebook
@@ -22,7 +22,7 @@ authors:
     affiliation: 1
   - name: Hongryul Ahn
     corresponding: true 
-    affiliation: 1
+    affiliation : 1
 affiliations:
  - name: Suwon University, Republic of Korea
    index: 1
@@ -39,13 +39,13 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 
 # Summary
 
-This paper is a record of research on predicting the closing price by learning rise and fall patterns with statistical big data. Stock data is time-series data in the field of meat that has important value for studying price changes over a long period of time. A study that used machine learning on historical stock data to offer  a  method for technical analysis of pattern-based stock prediction to generate promising prediction[@es2], As a technical analysis of stock price data, active research is being conducted recently, such as a study that predicts whether or not the stock price will rise the next day through the price vector of the days [@es3], the use of machine learning techniques in combination with technical analysis indicators is receiving more and more attention[@es1]. We present “stockAI”, a Python integration package for learning and research, for convenient use of such technical analysis. stockAI provides an integrated library that enables the creation of stock price time series datasets specialized for machine learning, artificial intelligence modeling and model evaluation. Through this, the goal of this study is to increase the usability and convenience of big data research on stock prices. As a result of performing backtesting of example studies using our library and visualizing return results, XGboost, LogisticRegression, and LightGBM models showed an upward trend, yielding significant results in predicting stock prices.
+This paper is a record of research on predicting the closing price by learning rise and fall patterns with statistical big data. Stock data is time-series data in the field of meat that has important value for studying price changes over a long period of time. A study that used machine learning on historical stock data to offer  a  method for technical analysis of pattern-based stock prediction to generate promising prediction[@es2], As a technical analysis of stock price data, active research is being conducted recently, such as a study that predicts whether or not the stock price will rise the next day through the price vector of the days [@es3], the use of machine learning techniques in combination with technical analysis indicators is receiving more and more attention[@es1]. We present “stockAIT”, a Python integration package for learning and research, for convenient use of such technical analysis. stockAIT provides an integrated library that enables the creation of stock price time series datasets specialized for machine learning, artificial intelligence modeling and model evaluation. Through this, the goal of this study is to increase the usability and convenience of big data research on stock prices. As a result of performing backtesting of example studies using our library and visualizing return results, XGboost, LogisticRegression, and LightGBM models showed an upward trend, yielding significant results in predicting stock prices.
 
 
 
 # State of need 
 
-'StockAI' is a Python library which is better than the existing library used to make models predicting stocks. First of all, existing libraries are inconvenient to use because their functions are distributed to different libraries. For example, we have used 'fdreader', 'yfinance' [@yj1] for data loading, 'pandas' for data preprocessing, and 'sklearn' [@yj2]', 'keras' and 'pytorch' for modeling. By modularizing the functions of data collection, preprocessing, and modeling, 'StockAI' can easily conduct stock price prediction research even for those who are not good at programming. In addition, there were no libraries required to validate the performance of the model before. Validation is an essential process for ensuring the reliability of the model. The 'StockAI' model validation function makes it easy to draw back-testing results and yield graphs. This allows you to evaluate the performance of learned models using future data and view the results at a glance. Finally, stock price data requires a lot of time and money for enough open source or quality data.[@yj3] From Github, Users of 'StockAI' can download 10 years worth of stock price data collected from 'KRX' and 'Yahoo Finance'.
+'stockAIT' is a Python library which is better than the existing library used to make models predicting stocks. First of all, existing libraries are inconvenient to use because their functions are distributed to different libraries. For example, we have used 'fdreader', 'yfinance' [@yj1] for data loading, 'pandas' for data preprocessing, and 'sklearn' [@yj2]', 'keras' and 'pytorch' for modeling. By modularizing the functions of data collection, preprocessing, and modeling, 'stockAIT' can easily conduct stock price prediction research even for those who are not good at programming. In addition, there were no libraries required to validate the performance of the model before. Validation is an essential process for ensuring the reliability of the model. The 'stockAIT' model validation function makes it easy to draw back-testing results and yield graphs. This allows you to evaluate the performance of learned models using future data and view the results at a glance. Finally, stock price data requires a lot of time and money for enough open source or quality data.[@yj3] From Github, Users of 'stockAIT' can download 10 years worth of stock price data collected from 'KRX' and 'Yahoo Finance'.
 
 
 
