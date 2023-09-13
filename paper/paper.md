@@ -39,7 +39,7 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 
 # Summary
 
- Stock price big data is data that records changes in prices of thousands of stocks over a long period of time, and is time series big data in the financial sector that has important value as a study. Study that used machine learning on historical stock data for technological analysis of pattern-based stock prediction to generate prediction prediction. [@es] As a study of stock price prediction on the following day, stock price data is actively analyzedThe use of machine learning techniques in combination with technical analysis indicators is receiving more and more attention [@es1]. To facilitate this technical analysis, we present the Python integration package "stockAIT" for learning and research. "stockAIT" provides an integrated library that can be performed from one library to machine learning-specific stock time series dataset generation, artificial intelligence modeling and model evaluation, and backtesting. Through this, the goal of this study is to increase the usability and convenience of stock price big data research.
+Stock price big data is data that records changes in prices of thousands of stocks over a long period of time, and is time series big data in the financial sector that has important value as a study. A study that used machine learning on historical stock data to offer  a  method for technical analysis of pattern-based stock prediction to generate promising prediction[@es2], As a technical analysis of stock price data, active research on technical analysis of stock price big data is being conducted, such as a study [@es3] predicting whether the stock price will rise the next day through the price vector of dates, the use of machine learning techniques in combination with technical analysis indicators is receiving more and more attention[@es1]. To facilitate this technical analysis, we present the Python integration package "stockAIT" for learning and research. "stockAIT" provides an integrated library that can be performed from one library to machine learning-specific stock time series dataset generation, artificial intelligence modeling and model evaluation, and backtesting. Through this, the goal of this study is to increase the usability and convenience of stock price big data research.
 
 
 
@@ -62,7 +62,7 @@ Stock price prediction is a difficult task because it depends on various factors
 
 
 
-![Time series stock price integrated dataset](../image/FIGURE2.png)
+![Time series stock price integrated dataset](../image/FIGURE2.PNG)
 
 
 Once the dataset is ready, define the Trader. Model learning and evaluation can be performed on a Trader object basis, and return simulation can be performed through transactions such as buying and selling.
@@ -72,7 +72,7 @@ First, train, validation, and test datasets are divided for model learning, and 
 
 
 
-![Evaluation Indexes Graph for Model Performance Evaluation and Threshold Settings](../image/FIGURE3.png)
+![Evaluation Indexes Graph for Model Performance Evaluation and Threshold Settings](../image/FIGURE3.PNG)
 
 
 
@@ -87,7 +87,7 @@ If you look at the [Figure 3] graph, and put the thresholds determined in the li
 The decision function automatically determines the purchase and sale price based on the threshold, and returns it to one DataFrame when all traders are completed. The sales journal DataFrame consists of a purchase (+)/sale (-) status, a purchase/sale ratio, and close information.
 
 
-![Sales diary data frame (left) and yield data frame (right)](../image/FIGURE5.png)
+![Sales diary data frame (left) and yield data frame (right)](../image/FIGURE5.PNG)
 
 
 The simulation function calculates the rate of return based on the prepared sales log. The leaderboard function has the advantage of knowing the total return by trader, and the yield_plot function supports visualization of the return graph by trading day, allowing you to see the performance of the model immediately. As such, it includes a back-testing process that verifies one's algorithm and investment strategy using historical data.
