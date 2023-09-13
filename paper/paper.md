@@ -92,7 +92,7 @@ The decision function automatically determines the purchase and sale price based
 
 The simulation function calculates the rate of return based on the prepared sales log. The leaderboard function has the advantage of knowing the total return by trader, and the yield_plot function supports visualization of the return graph by trading day, allowing you to see the performance of the model immediately. As such, it includes a back-testing process that verifies one's algorithm and investment strategy using historical data.
 
-![Total yield by trader (left) and yield graph by trading day (right)](../image/FIGURE6.png)
+![Total yield by trader (left) and yield graph by trading day (right)](../image/FIGURE6.PNG)
 
 
 
