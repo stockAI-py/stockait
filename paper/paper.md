@@ -53,7 +53,7 @@ First, "stockAIT" provides the convenience of research on stock price big data. 
 
 # Implementation and use in research 
 
-![stockAIT function/class workflow](../image/workflow.PNG)
+![stockAIT function/class workflow](../image/FIGURE1.PNG)
 
 
 "stockAIT" is implemented to make stock price big data analysis research easy to use through load_data, add_index, Trader class, etc., and the workflow picture is shown in [Figure 1].
@@ -62,7 +62,7 @@ Stock price prediction is a difficult task because it depends on various factors
 
 
 
-![Time series stock price integrated dataset](../image/FIGURE1.png)
+![Time series stock price integrated dataset](../image/FIGURE2.png)
 
 
 Once the dataset is ready, define the Trader. Model learning and evaluation can be performed on a Trader object basis, and return simulation can be performed through transactions such as buying and selling.
@@ -72,14 +72,14 @@ First, train, validation, and test datasets are divided for model learning, and 
 
 
 
-![Evaluation Indexes Graph for Model Performance Evaluation and Threshold Settings](../image/FIGURE2.png)
+![Evaluation Indexes Graph for Model Performance Evaluation and Threshold Settings](../image/FIGURE3.png)
 
 
 
 If you look at the [Figure 3] graph, and put the thresholds determined in the list in the order of traders and enter them in the lst_threshold factor of the set_threshold function, profitability can be verified with the histogram graph of the closing rate of change [Figure 4] next day. The entered threshold is automatically stored in the machine learning_buyer object for each trader.
 
 
-![Graph comparing the rate of change in the closing price of the next day based on threshold](../image/FIGURE3.png)
+![Graph comparing the rate of change in the closing price of the next day based on threshold](../image/FIGURE4.png)
 
 
 [Figure 4] Graph comparing the rate of change at the closing price of the next day based on threshold
@@ -87,15 +87,13 @@ If you look at the [Figure 3] graph, and put the thresholds determined in the li
 The decision function automatically determines the purchase and sale price based on the threshold, and returns it to one DataFrame when all traders are completed. The sales journal DataFrame consists of a purchase (+)/sale (-) status, a purchase/sale ratio, and close information.
 
 
-![Trading journal data frame](../image/FIGURE4.png)
+![Sales diary data frame (left) and yield data frame (right)](../image/FIGURE5.png)
 
-![Yield data frame](../image/FIGURE5.png)
 
 The simulation function calculates the rate of return based on the prepared sales log. The leaderboard function has the advantage of knowing the total return by trader, and the yield_plot function supports visualization of the return graph by trading day, allowing you to see the performance of the model immediately. As such, it includes a back-testing process that verifies one's algorithm and investment strategy using historical data.
 
-![Total returns for each trader](../image/FIGURE6.png)
+![Total yield by trader (left) and yield graph by trading day (right)](../image/FIGURE6.png)
 
-![yield graph for each trading day](../image/FIGURE7.png)
 
 
 
