@@ -9,7 +9,6 @@ tags:
 authors:
   - name: Eunsu Kim
     orcid: 0000-0002-6614-7465
-    equal-contrib: true
     affiliation: 1
   - name: Eunji Cha
     equal-contrib: true 
@@ -24,7 +23,7 @@ authors:
     corresponding: true 
     affiliation : 1
 affiliations:
- - name: Suwon University, Republic of Korea
+ - name: The University of Suwon, Division of Data Science, Republic of Korea
    index: 1
 
 date: 20 February 2023
@@ -37,16 +36,21 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ---
 
 
+
 # Summary
 
-Stock price big data is data that records changes in prices of thousands of stocks over a long period of time, and is time series big data in the financial sector that has important value as a study. A study that used machine learning on historical stock data to offer  a  method for technical analysis of pattern-based stock prediction to generate promising prediction[@es2], As a technical analysis of stock price data, active research on technical analysis of stock price big data is being conducted, such as a study [@es3] predicting whether the stock price will rise the next day through the price vector of dates, the use of machine learning techniques in combination with technical analysis indicators is receiving more and more attention[@es1]. To facilitate this technical analysis, we present the Python integration package "stockAIT" for learning and research. "stockAIT" provides an integrated library that can be performed from one library to machine learning-specific stock time series dataset generation, artificial intelligence modeling and model evaluation, and backtesting. Through this, the goal of this study is to increase the usability and convenience of stock price big data research.
+Stock price data is a large-scale representative time series big data that includes price fluctuations spanning several decades for thousands of stocks, not only in the financial sector but also in other fields, making it challenging to find. Attempts to discover specific patterns in price fluctuations over the past several decades have continuously persisted, leading to the development of various technical indicators to explain these price movements. Recently, there has been growing attention towards using machine learning for artificial intelligence-based learning from big data to identify patterns. We offer the Python integrated package 'stockAIT' to make it easier to add these technical indicators and perform machine learning-based predictions. 'stockAIT' provides a unified library that can handle everything from creating machine learning-specific stock time series datasets to artificial intelligence modeling, model evaluation, and backtesting. This aims to enhance the convenience and accessibility of stock price data research, catering to financial experts, individuals unfamiliar with programming, and researchers focusing on model development.
 
 
 
 # State of need 
 
-First, "stockAIT" provides the convenience of research on stock price big data. In order to conduct research on stock price data in the traditional way, different libraries are used for each function. For example, "Finance Data Reader", "yfinance"[@yj1], etc., are used for data collection, "NumPy" and "Pandas" are used for data preprocessing, and "scikit-learn"[@yj2],  "TensorFlow", "Pytorch",  and the like are used for modeling. However, with "stockAIT", data collection, preprocessing, modeling, and backtesting can be used in one package, providing ease of study. 
- Second, "stockAIT" provides concise code. Functions such as stock price data collection, data preprocessing such as adding indicators, scaling, trader definition, and yield simulation can be performed in concise code using the functions of "stockAIT". The simplicity of this code makes it easy for people who are not proficient in programming or even financial professionals to conduct research, for maximum efficiency.
+Stock price data is a large-scale representative time series big data that includes price fluctuations spanning several decades for thousands of stocks, not only in the financial sector but also in other fields, making it difficult to find in various sectors. Attempts to identify specific patterns in stock price fluctuations over the past several decades have continuously persisted (Elliott Wave Theory[@es4]), and various technical indicators have been developed to explain these price movements (such as MACD[@es5], CCI[@es6], RSI[@es7]) Recently, A study that used machine learning on historical stock data to offer  a  method for technical analysis of pattern-based stock prediction to generate promising prediction [es2], research that combines technical indicators and machine learning in the field of technical analysis of stock price data, such as predicting the next day's stock price increase using price vectors of dates, has been actively attempted and gained attention[@es3]. However, to conduct such machine learning-based price prediction analysis, it has been necessary to program a series of tasks, including data collection, preprocessing, adding technical indicators, modeling, visualization, and backtesting, or to utilize various separately developed libraries. Consequently, individuals lacking expertise in programming, including financial experts and the general public, have found it challenging to experiment with their own ideas for price prediction models. stockAIT addresses these issues and satisfies two specific requirements.
+
+First, 'stockAIT' provides convenience for research on stock big data. In traditional methods of conducting research on stock data, various libraries are typically used for different functions. For instance, data collection might involve libraries like 'Finance Data Reader' and 'yfinance'[@yj1], data preprocessing may require 'NumPy' and 'Pandas,' while modeling may involve 'scikit-learn'[@yj2], 'TensorFlow,' 'Pytorch,' and so on. However, by using 'stockAIT,' researchers can perform data collection, preprocessing, modeling, and backtesting all within a single package, thereby enhancing the convenience of their research.
+
+Second, 'stockAIT' offers concise code. Functions provided by 'stockAIT' can be used to perform tasks such as stock data collection, adding technical indicators, data preprocessing like scaling, defining trading strategies, and simulating returns using concise code. This code's simplicity allows even those not proficient in programming, including financial experts, to conduct research with ease, maximizing efficiency.
+
 
 
 
@@ -56,41 +60,43 @@ First, "stockAIT" provides the convenience of research on stock price big data. 
 ![stockAIT function/class workflow](../image/FIGURE1.PNG)
 
 
-"stockAIT" is implemented to make stock price big data analysis research easy to use through load_data, add_index, Trader class, etc., and the workflow picture is shown in [Figure 1].
-When entering the desired market list in the load_data method, an integrated stock price dataset consisting of Open, High, Low, Close, and Volume by stock (Code) and date is provided. "stockAIT" uses data provided by yfinance for stock price data, while Korea's stock price data crawls public stock price data on the KRX website. As of now, Open, High, Low, Close, Volume data are available from January 1, 2001 to June 30, 2023, and the data is updated annually.
-Stock price prediction is a difficult task because it depends on various factors such as political conditions, the global economy, financial reports, and corporate performance [@ej1]. To solve this problem, numerous studies on stock market prediction using technical or basic analysis through various soft computing technologies and algorithms are being conducted [@ej2]. "stockAIT" provides stock price data preprocessing methods specialized in technical analysis.  The add_index method can easily add technical auxiliary indicator columns from Open, High, Low, Close, and Volume of the integrated stock price dataset. In addition, MinMax, Standard, Robust, and DivClose, which standardize price-related variables by dividing them by the closing price of the previous day, are the scaling methods to match different scales for each item. The time_series method reconstructs the daily data to N days before N days (DN-1) compared to the day (D0) and converts it into a time series data set. By performing all three preprocessing, the integrated stock price time series dataset [Figure 2] can be obtained. 
+‘stockAIT’ is designed to facilitate stock big data analysis research through methods such as load_data, add_index, and the Trader class, with the workflow illustrated in [Figure 1].
 
+When you input a desired Market list into the load_data method, a consolidated stock price dataset is provided, organized by stock code and date, with Open, High, Low, Close, and Volume data. 'stockAIT' fetches publicly available stock data from the KRX website for South Korean stock data and uses data provided by 'yfinance' for stock data from other countries. As of the current reference date, data is available from January 1, 2001, to December 31, 2022, and it is updated annually, providing Open, High, Low, Close, and Volume data.
+
+Stock price prediction is a challenging task, as it can be influenced by various factors such as political events, global economics, financial reports, and corporate performance[@ej1]. To address this challenge, numerous studies are being conducted using various soft computing technologies and algorithms, employing technical or fundamental analysis to predict stock market behavior[@ej2]. 'stockAIT' specializes in providing pre-processing methods for technical analysis within this context. The add_index method allows easy addition of technical indicator columns from the Open, High, Low, Close, and Volume data of the consolidated stock price dataset. Additionally, for scaling, there are methods such as MinMax, Standard, Robust, and DivClose, which standardize price-related variables by dividing them by the previous day's closing price, to adjust for different scales among different stocks. The time_series method transforms daily data into a time series dataset by reorganizing data from the current day (D0) to N days back (DN-1).
+
+By applying all three preprocessing steps, you can obtain the consolidated stock time series dataset [Figure 2].
 
 
 ![Time series stock price integrated dataset](../image/FIGURE2.PNG)
 
 
-Once the dataset is ready, define the Trader. Model learning and evaluation can be performed on a Trader object basis, and return simulation can be performed through transactions such as buying and selling.
-First, train, validation, and test datasets are divided for model learning, and data is stored in the Trader using the save_dataset method. Then, a buyer object and a seller object that enter the Trader object are defined. Buyer's objects include Conditional Buyer, which decides to buy through certain conditions of data, Machine Learning Buyer, which decides to buy on the side of the machine learning model, and Seller's objects include SubSeller objects that sell all purchased stocks the next day.
- In the experiment, the validation dataset used for model evaluation was used from January 1, 2017 to December 31, 2020, the test dataset used for backtesting was used from July 1, 2021 to December 31, 2021, and LightGBM, XGBoost, RandomForest, LSTM, and Transformer models were used. The scikit-learn, xgboost, and lightgbm packages were used to define the model, and the keras framework was used for the deep learning model. Both Keras and PyTorch frameworks are available when defining deep learning models.
- Model learning is conducted with the trader_train function, and after model learning, the performance of the model is confirmed through the get_val_by_threshold function that supports graph [Figure 2] visualization of four evaluation indicators: auc score and precision, recall, and f1 score. For stock trading, you can look at the Precision indicator on the right graph and determine the optimal prediction probability threshold for the section where the model's prediction success rate increases.
+Once the dataset preparation is complete, you proceed to define the Trader. With Trader objects, you can conduct model training and evaluation, as well as simulate profits through buying and selling transactions.
 
+Firstly, to train the model, you divide the data into training, validation, and test datasets, and then save the data within the Trader using the save_dataset method. Next, you define Buyer and Seller objects within the Trader. The Buyer objects include ConditionalBuyer, which decides purchases based on specific data conditions, and MachinelearningBuyer, which determines purchases based on machine learning model predictions. The Seller object includes SubSeller, which sells all purchased stocks the following day.
+
+In the experiments, the training data spans from January 1, 2017, to December 31, 2020. The validation dataset, used for model evaluation, ranges from January 1, 2021, to June 31, 2021. The test dataset, used for backtesting, covers the period from July 1, 2021, to December 31, 2021. Various models such as LightGBM, XGBoost, RandomForest, LSTM, and Transformer were employed. When defining the models, packages like scikit-learn, xgboost, and lightgbm were used, while for deep learning models, both Keras and PyTorch frameworks are applicable.
+
+The trader_train function is utilized to conduct model training, and after training, you can evaluate the model's performance through the get_eval_by_threshold function, which supports visualizing metrics like AUC score and Precision, Recall, F1-score for various threshold values [Figure 2]. To make decisions in stock trading, you can assess the Precision metric on the right graph, determining the optimal prediction probability threshold where the model's success rate is higher.
 
 
 ![Evaluation Indexes Graph for Model Performance Evaluation and Threshold Settings](../image/FIGURE3.PNG)
 
-
-
-If you look at the [Figure 3] graph, and put the thresholds determined in the list in the order of traders and enter them in the lst_threshold factor of the set_threshold function, profitability can be verified with the histogram graph of the closing rate of change [Figure 4] next day. The entered threshold is automatically stored in the machine learning_buyer object for each trader.
-
+After reviewing [Figure 3] graphs and making decisions regarding the threshold values, you can store these thresholds in a list in the order of the traders. Then, you can input this list of thresholds into the lst_threshold argument of the set_threshold function. This allows you to perform profitability validation through a histogram graph of the next day's closing price change rate [Figure 4]. The thresholds you input are automatically saved within the machinelearning_buyer objects of each trader.
 
 ![Graph comparing the rate of change in the closing price of the next day based on threshold](../image/FIGURE4.png)
 
 
 [Figure 4] Graph comparing the rate of change at the closing price of the next day based on threshold
 
-The decision function automatically determines the purchase and sale price based on the threshold, and returns it to one DataFrame when all traders are completed. The sales journal DataFrame consists of a purchase (+)/sale (-) status, a purchase/sale ratio, and close information.
-
+The decision function automatically determines buy and sell decisions based on the specified thresholds. Once the trading journal for all traders is completed, it is returned as a single DataFrame. The trading journal DataFrame consists of buy (+) and sell (-) states, buy/sell ratios, and Close information.
 
 ![Sales diary data frame (left) and yield data frame (right)](../image/FIGURE5.PNG)
 
 
-The simulation function calculates the rate of return based on the prepared sales log. The leaderboard function has the advantage of knowing the total return by trader, and the yield_plot function supports visualization of the return graph by trading day, allowing you to see the performance of the model immediately. As such, it includes a back-testing process that verifies one's algorithm and investment strategy using historical data.
+The simulation function calculates returns based on the generated trading journal. The leaderboard function provides a total return for each trader, allowing you to assess their performance individually. The yield_plot function offers the advantage of visualizing daily returns, enabling a quick overview of the model's performance. This encompasses the backtesting process of validating one's algorithms and investment strategies using historical data.
+
 
 ![Total yield by trader (left) and yield graph by trading day (right)](../image/FIGURE6.PNG)
 
