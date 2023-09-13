@@ -317,8 +317,8 @@ class MachinelearningBuyer:
             for batch_X, batch_y in dataloader: 
                 batch_X, batch_y = batch_X.to(device), batch_y.to(device) 
                 
-                outputs = model(batch_X) 
-                amount_batch = np.array(outputs.reshape(1, len(batch_X))[0] >= self.threshold).astype("int")
+                outputs = model(batch_X).cpu() 
+                amount_batch = np.array(outputs.reshape(1, len(batch_X.cpu()))[0] >= self.threshold).astype("int")
                 amount = np.concatenate((amount, amount_batch))
                 
         del y 
