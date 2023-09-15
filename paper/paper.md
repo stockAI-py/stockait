@@ -1,5 +1,5 @@
 ---
-title: 'StockAIT:Python Machine Learning Framework for stock predcition.'
+title: 'StockAIT : Python Machine Learning Framework for Stock Artificial Intelligence Trader'
 tags:
   - Python
   - jupyter notebook
@@ -26,7 +26,7 @@ affiliations:
  - name: The University of Suwon, Division of Data Science, Republic of Korea
    index: 1
 
-date: 20 February 2023
+date: 14 September 2023
 bibliography: paper.bib
 
 # Optional fields if submitting to a AAS journal too, see this blog post:
@@ -45,13 +45,12 @@ Stock price data is a large-scale representative time series big data that inclu
 
 # State of need 
 
-Stock price data is a large-scale representative time series big data that includes price fluctuations spanning several decades for thousands of stocks, not only in the financial sector but also in other fields, making it difficult to find in various sectors. Attempts to identify specific patterns in stock price fluctuations over the past several decades have continuously persisted (Elliott Wave Theory[@es4]), and various technical indicators have been developed to explain these price movements (such as MACD[@es5], CCI[@es6], RSI[@es7]) Recently, A study that used machine learning on historical stock data to offer  a  method for technical analysis of pattern-based stock prediction to generate promising prediction[@es2], research that combines technical indicators and machine learning in the field of technical analysis of stock price data, such as predicting the next day's stock price increase using price vectors of dates, has been actively attempted and gained attention[@es3]. However, to conduct such machine learning-based price prediction analysis, it has been necessary to program a series of tasks, including data collection, preprocessing, adding technical indicators, modeling, visualization, and backtesting, or to utilize various separately developed libraries. Consequently, individuals lacking expertise in programming, including financial experts and the general public, have found it challenging to experiment with their own ideas for price prediction models. stockAIT addresses these issues and satisfies two specific requirements.
+Stock price data is a large-scale representative time series big data that includes price fluctuations spanning several decades for thousands of stocks. Due to its scale, which is difficult to find not only in the financial sector but also in other fields, stock price data is a crucial resource in the field of time series analysis. Attempts to identify specific patterns in stock price fluctuations over the past several decades have continuously persisted (e.g. Elliott Wave Theory[@es4]), and various technical indicators have been developed to explain these price movements such as MACD[@es5], CCI[@es6], and RSI[@es7]. Recently, A study that used machine learning on historical stock data to offer a method for technical analysis of pattern-based stock prediction to generate promising prediction[@es2], research that combines technical indicators and machine learning in the field of technical analysis of stock price data, such as predicting the next day's stock price increase using price vectors of dates, has been actively attempted and gained attention[@es3]. However, to conduct such machine learning-based price prediction analysis, it has been necessary to program a series of tasks, including data collection, preprocessing, adding technical indicators, modeling, visualization, and backtesting, or to utilize various separately developed libraries. Consequently, individuals lacking expertise in programming, including financial experts and the general public, have found it challenging to experiment with their own ideas for price prediction models. StockAIT addresses these issues and satisfies two specific requirements.
 
+First, 'StockAIT' provides convenience for research on stock big data. In traditional methods of conducting research on stock data, various libraries are typically used for different functions. For instance, data collection might involve libraries like 'Finance Data Reader' and 'yfinance'[@yj1], data preprocessing may require 'NumPy' and 'Pandas,' while modeling may involve 'scikit-learn'[@yj2], 'TensorFlow[@paper1],' 'PyTorch[@paper2],' and so on. However, by using 'StockAIT,' researchers can perform data collection, preprocessing, modeling, and backtesting all within a single package, thereby enhancing the convenience of their research.
 
-First, 'stockAIT' provides convenience for research on stock big data. In traditional methods of conducting research on stock data, various libraries are typically used for different functions. For instance, data collection might involve libraries like 'Finance Data Reader' and 'yfinance'[@yj1], data preprocessing may require 'NumPy' and 'Pandas,' while modeling may involve 'scikit-learn'[@yj2], 'TensorFlow,' 'Pytorch,' and so on. However, by using 'stockAIT,' researchers can perform data collection, preprocessing, modeling, and backtesting all within a single package, thereby enhancing the convenience of their research.
+Second, 'StockAIT' offers concise code. Functions provided by 'StockAIT' can be used to perform tasks such as stock data collection, adding technical indicators, data preprocessing like scaling, defining trading strategies, and simulating returns using concise code. This code's simplicity allows even those not proficient in programming, including financial experts, to conduct research with ease, maximizing efficiency.
 
-
-Second, 'stockAIT' offers concise code. Functions provided by 'stockAIT' can be used to perform tasks such as stock data collection, adding technical indicators, data preprocessing like scaling, defining trading strategies, and simulating returns using concise code. This code's simplicity allows even those not proficient in programming, including financial experts, to conduct research with ease, maximizing efficiency.
 
 
 
@@ -83,7 +82,7 @@ Once the dataset preparation is complete, you proceed to define the Trader. With
 Firstly, to train the model, you divide the data into training, validation, and test datasets, and then save the data within the Trader using the save_dataset method. Next, you define Buyer and Seller objects within the Trader. The Buyer objects include ConditionalBuyer, which decides purchases based on specific data conditions, and MachinelearningBuyer, which determines purchases based on machine learning model predictions. The Seller object includes SubSeller, which sells all purchased stocks the following day.
 
 
-In the experiments, the training data spans from January 1, 2017, to December 31, 2020. The validation dataset, used for model evaluation, ranges from January 1, 2021, to June 31, 2021. The test dataset, used for backtesting, covers the period from July 1, 2021, to December 31, 2021. Various models such as LightGBM, XGBoost, RandomForest, LSTM, and Transformer were employed. When defining the models, packages like scikit-learn, xgboost, and lightgbm were used, while for deep learning models, both Keras and PyTorch frameworks are applicable.
+In the experiments, the training data spans from January 1, 2017, to December 31, 2020. The validation dataset, used for model evaluation, ranges from January 1, 2021, to June 31, 2021. The test dataset, used for backtesting, covers the period from July 1, 2021, to December 31, 2021. Various models such as LightGBM[@paper3], XGBoost[@paper4], RandomForest[@paper5], LSTM[paper6], and Transformer[@paper7] were employed. When defining the models, packages like scikit-learn, xgboost, and lightgbm were used, while for deep learning models, both Keras and PyTorch frameworks are applicable.
 
 
 The trader_train function is utilized to conduct model training, and after training, you can evaluate the model's performance through the get_eval_by_threshold function, which supports visualizing metrics like AUC score and Precision, Recall, F1-score for various threshold values [Figure 2]. To make decisions in stock trading, you can assess the Precision metric on the right graph, determining the optimal prediction probability threshold where the model's success rate is higher.
