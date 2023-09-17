@@ -21,6 +21,7 @@ authors:
     affiliation: 1
   - name: Hongryul Ahn
     corresponding: true 
+    orcid: 0000-0002-5941-9784
     affiliation : 1
 affiliations:
  - name: The University of Suwon, Division of Data Science, Republic of Korea
@@ -82,7 +83,7 @@ Once the dataset preparation is complete, you proceed to define the Trader. With
 Firstly, to train the model, you divide the data into training, validation, and test datasets, and then save the data within the Trader using the save_dataset method. Next, you define Buyer and Seller objects within the Trader. The Buyer objects include ConditionalBuyer, which decides purchases based on specific data conditions, and MachinelearningBuyer, which determines purchases based on machine learning model predictions. The Seller object includes SubSeller, which sells all purchased stocks the following day.
 
 
-In the experiments, the training data spans from January 1, 2017, to December 31, 2020. The validation dataset, used for model evaluation, ranges from January 1, 2021, to June 31, 2021. The test dataset, used for backtesting, covers the period from July 1, 2021, to December 31, 2021. Various models such as LightGBM[@paper3], XGBoost[@paper4], RandomForest[@paper5], LSTM[paper6], and Transformer[@paper7] were employed. When defining the models, packages like scikit-learn, xgboost, and lightgbm were used, while for deep learning models, both Keras and PyTorch frameworks are applicable.
+In the experiments, the training data spans from January 1, 2017, to December 31, 2020. The validation dataset, used for model evaluation, ranges from January 1, 2021, to June 31, 2021. The test dataset, used for backtesting, covers the period from July 1, 2021, to December 31, 2021. Various models such as LightGBM[@paper3], XGBoost[@paper4], RandomForest[@paper5], LSTM[@paper6], and Transformer[@paper7] were employed. When defining the models, packages like scikit-learn, xgboost, and lightgbm were used, while for deep learning models, both Keras and PyTorch frameworks are applicable.
 
 
 The trader_train function is utilized to conduct model training, and after training, you can evaluate the model's performance through the get_eval_by_threshold function, which supports visualizing metrics like AUC score and Precision, Recall, F1-score for various threshold values [Figure 2]. To make decisions in stock trading, you can assess the Precision metric on the right graph, determining the optimal prediction probability threshold where the model's success rate is higher.
