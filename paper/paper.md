@@ -111,4 +111,4 @@ The simulation function calculates returns based on the generated trading journa
 
 
 
-## References
+# References
