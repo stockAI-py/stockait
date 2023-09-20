@@ -31,6 +31,7 @@ stockait is an integrated machine learning package for technical research of sto
 <br>
 
 
+
 ------
 ## Datasets provided
 The following is a description of the dataset provided by stockait, the dependent variable that are set by default.
@@ -46,8 +47,14 @@ The following is a description of the dataset provided by stockait, the dependen
 <br>
 
 
+
 ------
-## Installation
+## How to use stockait? 
+You can find more information about using stockait in the `tutorials` folder.
+
+
+
+### Installation
 ```python
 pip install stockait
 ```
@@ -60,9 +67,6 @@ import stockait as sai
 <br>
 <br>
 
-------
-## How to use stockait? 
-You can find more information about using stockait in the `tutorials` folder.
 
 
 ### ▪️ method 
