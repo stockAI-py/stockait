@@ -59,6 +59,7 @@ You can find more information about using stockait in the `tutorials` folder.
 pip install stockait
 ```
 
+### Import 
 ```python
 import stockait as sai 
 ```
