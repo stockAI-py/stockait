@@ -14,7 +14,7 @@ authors:
     equal-contrib: true 
     affiliation: 1
   - name: Sieun Kim
-    equal-contrib: true
+    orcid: 0009-0002-8677-6792
     affiliation: 1
   - name: Yujin Cha
     equal-contrib: true
