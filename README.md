@@ -53,13 +53,14 @@ The following is a description of the dataset provided by stockait, the dependen
 You can find more information about using stockait in the `tutorials` folder.
 
 
+<br>
 
-### Installation
+### ▪️ Installation
 ```python
 pip install stockait
 ```
 
-### Import 
+### ▪️ Import 
 ```python
 import stockait as sai 
 ```
