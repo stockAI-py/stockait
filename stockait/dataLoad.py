@@ -7,6 +7,7 @@ import boto3
 import os
 import sqlalchemy 
 from sqlalchemy import create_engine
+import yfinance as yf
 
 
 
@@ -84,7 +85,7 @@ def get_tickers(markets:list):
 
 
 
-def load_data(date:list, tickers:list):
+def load_data(date:list, tickers:list, country:str):
     
     '''
     
@@ -94,34 +95,50 @@ def load_data(date:list, tickers:list):
     
     [ input ] 
     - date: (list) Specify the date you want to load like [start_date, end_date]
-    - tickers: (list) List the tickers you want to bring in.
+    - countries: (list) List the countries you want to bring in.
     
     
     [ output ]
     - df_code: (pd.DataFrame) Daily stock price data for dates and stocks entered as input values.
     
     '''
-
-    # read_only account 
-    host="146.56.39.107"
-    user="stockuser"
-    passwd="stockai123"
-    db="STOCK_DATA"
+    df_code = pd.DataFrame()
     
-    db_connection_str = f'mysql+pymysql://{user}:{passwd}@{host}/{db}'
-    db_connection = create_engine(db_connection_str)
-    conn = db_connection.connect()
+    if country == 'South Korea':
 
-    df_code = pd.DataFrame() 
-    for code in tqdm(tickers): 
-        sql_query = f'''
-                    SELECT * 
-                    FROM stock_{code}
-                    WHERE (Date BETWEEN "{date[0]}" AND "{date[1]}") AND (Open NOT IN (0)) AND (Low != High) 
-                    '''
-        stock_code = pd.read_sql(sql = sql_query, con = conn) 
-        df_code = pd.concat([df_code, stock_code], axis=0)
+        # read_only account 
+        host="146.56.39.107"
+        user="stockuser"
+        passwd="stockai123"
+        db="STOCK_DATA"
 
-    df_code = df_code.sort_values(by=["Code", 'Date'])
+        db_connection_str = f'mysql+pymysql://{user}:{passwd}@{host}/{db}'
+        db_connection = create_engine(db_connection_str)
+        conn = db_connection.connect()
+
+        for code in tqdm(tickers): 
+            sql_query = f'''
+                        SELECT * 
+                        FROM stock_{code}
+                        WHERE (Date BETWEEN "{date[0]}" AND "{date[1]}") AND (Open NOT IN (0)) AND (Low != High) 
+                        '''
+            stock_code = pd.read_sql(sql = sql_query, con = conn) 
+            df_code = pd.concat([df_code, stock_code], axis=0)
+
+
+    else:
+
+        stock_code = yf.download(tickers=tickers, start=date[0], end=date[1], group_by='tickers', progress=True).reset_index()
+        if len(stock_code) != 0:
+            stock_code = stock_code.melt(id_vars='Date')
+            stock_code = stock_code.pivot_table(index=['variable_0', 'Date'], columns='variable_1', values='value').reset_index()
+            stock_code = stock_code.rename(columns={'variable_0':'Code'})
+            stock_code.columns.names= [None]
+            stock_code = stock_code[['Code', 'Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
+            stock_code[['Open', 'High', 'Low', 'Close', 'Volume']] = stock_code[['Open', 'High', 'Low', 'Close', 'Volume']].astype(dtype='int64',errors='ignore')
+            df_code = pd.concat([df_code, stock_code], axis=0)
     
+    df_code['Date'] = pd.to_datetime(df_code['Date'], format='%Y/%m/%d')
+    df_code = df_code.sort_values(by=['Code', 'Date'])
+
     return df_code.reset_index(drop=True)
