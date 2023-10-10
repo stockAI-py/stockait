@@ -4,7 +4,7 @@
 
 
 ------
-## stockait: python machine learning framework for stock prediction
+## stockait : Python Machine Learning Framework for Stock Artificial Intelligence Trader
 stockait is an integrated machine learning package for technical research of stock price big data. From data collection to machine learning-specific stock price time series dataset generation, AI model learning and model evaluation, and backtesting, the goal of this package is to provide a one-time Python library to enhance the utilization and convenience of stock price big data technical research.
 
 <br>
@@ -31,6 +31,7 @@ stockait is an integrated machine learning package for technical research of sto
 <br>
 
 
+
 ------
 ## Datasets provided
 The following is a description of the dataset provided by stockait, the dependent variable that are set by default.
@@ -46,12 +47,20 @@ The following is a description of the dataset provided by stockait, the dependen
 <br>
 
 
+
 ------
-## Installation
+## How to use stockait? 
+You can find more information about using stockait in the `tutorials` folder.
+
+
+<br>
+
+### ▪️ Installation
 ```python
 pip install stockait
 ```
 
+### ▪️ Import 
 ```python
 import stockait as sai 
 ```
@@ -60,9 +69,6 @@ import stockait as sai
 <br>
 <br>
 
-------
-## How to use stockait? 
-You can find more information about using stockait in the `tutorials` folder.
 
 
 ### ▪️ method 

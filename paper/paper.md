@@ -14,7 +14,7 @@ authors:
     equal-contrib: true 
     affiliation: 1
   - name: Sieun Kim
-    equal-contrib: true
+    orcid: 0009-0002-8677-6792
     affiliation: 1
   - name: Yujin Cha
     equal-contrib: true
@@ -44,7 +44,7 @@ Stock price data is a large-scale representative time series big data that inclu
 
 
 
-# State of need 
+# Statement of need 
 
 Stock price data is a large-scale representative time series big data that includes price fluctuations spanning several decades for thousands of stocks. Due to its scale, which is difficult to find not only in the financial sector but also in other fields, stock price data is a crucial resource in the field of time series analysis. Attempts to identify specific patterns in stock price fluctuations over the past several decades have continuously persisted (e.g. Elliott Wave Theory[@es4]), and various technical indicators have been developed to explain these price movements such as MACD[@es5], CCI[@es6], and RSI[@es7]. Recently, A study that used machine learning on historical stock data to offer a method for technical analysis of pattern-based stock prediction to generate promising prediction[@es2], research that combines technical indicators and machine learning in the field of technical analysis of stock price data, such as predicting the next day's stock price increase using price vectors of dates, has been actively attempted and gained attention[@es3]. However, to conduct such machine learning-based price prediction analysis, it has been necessary to program a series of tasks, including data collection, preprocessing, adding technical indicators, modeling, visualization, and backtesting, or to utilize various separately developed libraries. Consequently, individuals lacking expertise in programming, including financial experts and the general public, have found it challenging to experiment with their own ideas for price prediction models. StockAIT addresses these issues and satisfies two specific requirements.
 
@@ -111,4 +111,4 @@ The simulation function calculates returns based on the generated trading journa
 
 
 
-## References
+# References
